@@ -1,8 +1,20 @@
-# Getting Started with Create React App
+# LEGO Repositories, Help you find all Lego sets.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[LEGO official website](https://www.lego.com/en-ie).
 
-## Available Scripts
+## Project Introduction
+- [Technology Selection](##Technology-Selection)
+## Technology Selection
+- React
+- Ant Design
+
+## Get started with this project.
+
+
+
+
+
+
 
 In the project directory, you can run:
 
