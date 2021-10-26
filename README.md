@@ -3,10 +3,13 @@
 [LEGO official website](https://www.lego.com/en-ie).
 
 ## Project Introduction
-- [Technology Selection](##Technology-Selection)
+- [Technology Selection](#technology-selection)
+- [ Get started with this project](#get-started-with-this-project)
+
 ## Technology Selection
-- React
-- Ant Design
+- React [React](https://reactjs.org/)
+- Ant Design [Ant Design](https://ant.design/)
+- reset.css from https://github.com/jgthms/minireset.css
 
 ## Get started with this project.
 

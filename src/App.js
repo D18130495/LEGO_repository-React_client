@@ -9,10 +9,10 @@ export default class App extends React.Component {
     render() {
        return(
             <BrowserRouter>
-                <switch>
+                <Switch>
                     <Route path='/login' component={Login}></Route>
                     <Route path='/admin' component={Admin}></Route>
-                </switch>
+                </Switch>
             </BrowserRouter>
        )
     }

@@ -1,3 +1,4 @@
+/* reset.css from https://github.com/jgthms/minireset.css to make some elements look better */
 html,
 body,
 p,
@@ -73,11 +74,13 @@ th {
   padding: 0;
 }
 
+/* html and body tag width and height */
 html, body {
   height: 100%;
   width: 100%;
 }
 
+/* main div tag width and height */
 #root {
   height: 100%;
   width: 100%;
