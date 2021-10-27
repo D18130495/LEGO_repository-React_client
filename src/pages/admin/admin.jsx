@@ -1,4 +1,4 @@
-// manage part router
+// manage page
 import React, {Component} from "react";
 
 export default class Admin extends Component {

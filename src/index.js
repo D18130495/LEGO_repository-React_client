@@ -1,3 +1,4 @@
+// render APP.js to the ../public/index.html div root
 import React from "react";
 import ReactDOM from "react-dom";
 

@@ -9,7 +9,10 @@
 ## Technology Selection
 - React [React](https://reactjs.org/)
 - Ant Design [Ant Design](https://ant.design/)
-- reset.css from https://github.com/jgthms/minireset.css
+
+### This project used our repositories from GitHub
+- The purpose of using is to reset css style, in order to make some elements look better.
+- reset.css [jgthms/minireset.css](https://github.com/jgthms/minireset.css)(many thanks)
 
 ## Get started with this project.
 
