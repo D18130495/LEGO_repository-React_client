@@ -17,7 +17,7 @@ export default function ajax(url, data={}, type) {
             promise = axios.post(url, data)
         }
 
-        // unified exception handling
+        // global exception handle
         // if success, call resolve()
         // if unsuccess, call reject()
         promise.then(response => {

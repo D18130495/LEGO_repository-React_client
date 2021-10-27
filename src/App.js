@@ -2,8 +2,9 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
+// get the page location 
 import Login from "./pages/login/login";
-import Admin from "./pages/admin/admin";
+import Main from "./pages/main/main";
 
 export default class App extends React.Component {
 
@@ -12,7 +13,7 @@ export default class App extends React.Component {
             <BrowserRouter>
                 <Switch>
                     <Route path='/login' component={Login}></Route>
-                    <Route path='/admin' component={Admin}></Route>
+                    <Route path='/main' component={Main}></Route>
                 </Switch>
             </BrowserRouter>
        )

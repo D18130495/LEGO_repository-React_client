@@ -1,19 +1,31 @@
 // login page
 import React, {Component} from "react";
 // antd form
-import { Form, Input, Button} from 'antd';
+import { Form, Input, Button, message} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-
+// less style
 import './login.less'
+// lego logo
 import lego from './images/LEGO.png'
+// userLogin api
 import {userLogin} from '../../api'
 
 export default class Login extends Component {
 
+    // after form submit, handle the data pass to the back-end
     onFinish = (valuse) => {
-        userLogin(valuse).then(Response => {
-                console.log(Response.data)
-            })
+        const {username, password} = valuse
+        userLogin(username, password).then(Response => {
+            // console.log(Response.data)
+            // 0 success, 1 unsuccess
+            if(Response.data.status === 0) {
+                message.success('Login successful')
+                // router to main page
+                this.props.history.replace('/main')
+            }else {
+                message.error('Login failed')
+            }
+        })
     };
 
     render() {
@@ -41,7 +53,7 @@ export default class Login extends Component {
                         <Form.Item name="password" 
                             rules={[
                                 { required: true, whitespace: true, message: 'Please input your Password!' },
-                                { min: 6, message: 'Password must be at least 6 character'},
+                                { min: 5, message: 'Password must be at least 5 character'},
                                 { max: 14, message: 'Password can not exceed 14 character'},
                                 { pattern: /^[a-zA-Z0-9]+$/, message: 'Password must be character or numbers'}
                             ]}
@@ -56,6 +68,10 @@ export default class Login extends Component {
                         </Form.Item>
                     </Form>
                 </section>
+
+                <footer className="login-footer">
+                    <p>Created by Yushun Zeng 2021</p>
+                </footer>
             </div>
         )
     }
