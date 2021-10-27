@@ -6,11 +6,14 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import './login.less'
 import lego from './images/LEGO.png'
+import {userLogin} from '../../api'
 
 export default class Login extends Component {
 
     onFinish = (valuse) => {
-        console.log(valuse)
+        userLogin(valuse).then(Response => {
+                console.log(Response.data)
+            })
     };
 
     render() {
