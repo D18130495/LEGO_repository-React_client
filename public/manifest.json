@@ -1,7 +1,8 @@
 {
+  "des": "Very beautiful artwork from a person, who tells me every day that she should go to bed earlier But still play with the phone",
   "icons": [
     {
-      "src": "duoduochicken.ico",
+      "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }

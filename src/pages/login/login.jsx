@@ -9,9 +9,12 @@ import './login.less'
 import lego from './images/LEGO.png'
 // userLogin api
 import {userLogin} from '../../api'
+// use to store information for login and display user name on the main page
+import storeUser from '../../utils/storeUserName'
+// redirect the page
+import { Redirect } from "react-router-dom";
 
 export default class Login extends Component {
-
     // after form submit, handle the data pass to the back-end
     onFinish = (valuse) => {
         const {username, password} = valuse
@@ -22,6 +25,8 @@ export default class Login extends Component {
                 message.success('Login successful')
                 // router to main page
                 this.props.history.replace('/main')
+                // store user info
+                storeUser.saveUser(Response.data)
             }else {
                 message.error('Login failed')
             }
@@ -29,6 +34,12 @@ export default class Login extends Component {
     };
 
     render() {
+        // auto login, if localStorage has user value
+        const user = storeUser.loadUser()
+        if(user) {
+            return <Redirect to='/main'/>
+        }
+        
         return (
             <div className="login">
                 <header className="login-header">
