@@ -1,18 +1,14 @@
 // login page
 import React, {Component} from "react";
-// antd form
-import { Form, Input, Button, message} from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-// less style
-import './login.less'
-// lego logo
-import lego from './images/LEGO.png'
-// userLogin api
-import {userLogin} from '../../api'
-// use to store information for login and display user name on the main page
-import storeUser from '../../utils/storeUserName'
-// redirect the page
-import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom"; // redirect the page
+import { Form, Input, Button, message} from 'antd'; // antd form 
+import { UserOutlined, LockOutlined } from '@ant-design/icons'; // antd form
+
+import './login.less' // less style
+import lego from '../../assets/images/LEGO.png' // lego logo
+
+import {userLogin} from '../../api' // userLogin api
+import storeUser from '../../utils/storeUserName' // use to store information for login and display user name on the main page
 
 export default class Login extends Component {
     // after form submit, handle the data pass to the back-end
@@ -35,8 +31,7 @@ export default class Login extends Component {
 
     render() {
         // auto login, if localStorage has user value
-        const user = storeUser.loadUser()
-        if(user) {
+        if(storeUser.loadUser()) {
             return <Redirect to='/main'/>
         }
         
