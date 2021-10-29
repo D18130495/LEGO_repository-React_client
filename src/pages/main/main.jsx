@@ -1,13 +1,18 @@
 // Main page
 import React, {Component} from "react";
-import { Redirect } from "react-router"; // redirect the page
+import { Redirect, Route, Switch } from "react-router"; // redirect the page
 import { Layout } from 'antd'; // antd layout component
 
 // components of header, left-nav
 import LeftNav from "../../components/left-nav/left-nav";
 import Header from "../../components/header/header";
-import storeUser from '../../utils/storeUserName' // store user, use to display user information
-import memoryUser from "../../utils/memoryUser"; // store user
+
+import memoryUser from "../../utils/memoryUser"; // get username
+
+import Home from '../home/home'
+import Category from "../category/category";
+import SetInfo from "../setInfo/setInfo";
+import User from "../user/user";
 
 const { Footer, Sider, Content } = Layout;
 
@@ -25,8 +30,16 @@ export default class Main extends Component {
                     <LeftNav></LeftNav>
                 </Sider>
                 <Layout>
-                    <Header>Header</Header>
-                    <Content>Content</Content>
+                    <Header></Header>
+                    <Content style={{background: '#fffbeb'}}>
+                        <Switch>
+                            <Route path='/home' component={Home}></Route>
+                            <Route path='/category' component={Category}></Route>
+                            <Route path='/setinfo' component={SetInfo}></Route>
+                            <Route path='/user' component={User}></Route>
+                            <Redirect to='/home'/> // Automatically direct to home if no one be chosen
+                        </Switch>
+                    </Content>
                     <Footer>Footer</Footer>
                 </Layout>
             </Layout>
