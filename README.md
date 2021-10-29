@@ -8,15 +8,35 @@
 - [Get started with this project](#get-started-with-this-project)
 
 ## Technology Selection
-- React [React](https://reactjs.org/)
-- Ant Design [Ant Design](https://ant.design/)
-- Ajax(Axios)
+|     Technology     |        Description       |                Official website                |
+| :----------------: | :----------------------: | :--------------------------------------------: |
+|       React        |    Front-end framework   |               https://reactjs.org/             |
+|     Ant Design     |      Component style     |           https://ant.design/index-cn          |
+|     Ajax(Axios)    | Send asynchronous request|                                                |
+|                    |                          |                                                |
+
+
 
 ### This project used our repositories from GitHub
 - The purpose of using is to reset css style, in order to make some elements look better.
 - reset.css [jgthms/minireset.css](https://github.com/jgthms/minireset.css)(many thanks)
 
 ## Project structure
+
+```
+LEGO Repositories
+├── api -- Axios to send Ajax requests(GET, POST)
+├── assets -- General resources
+├── components -- Some components of page 
+├── pages -- login, main
+├── utils -- some utils
+├── 
+├── 
+├── 
+├── 
+├── 
+└── 
+```
 
 ## Get started with this project.
 

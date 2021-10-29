@@ -7,16 +7,17 @@ import { Layout } from 'antd'; // antd layout component
 import LeftNav from "../../components/left-nav/left-nav";
 import Header from "../../components/header/header";
 import storeUser from '../../utils/storeUserName' // store user, use to display user information
+import memoryUser from "../../utils/memoryUser"; // store user
 
 const { Footer, Sider, Content } = Layout;
 
 export default class Main extends Component {
     render() {
         // if not login, and there do not have user info in the localstorage, redirect to login page
-        if(!storeUser.loadUser().data) {
+        const user = memoryUser.user.data
+        if(!user || !user._id) {
             return <Redirect to='/login'/>
         }
-        // console.log(user)
         
         return (
             <Layout style={{height : '100%'}}>

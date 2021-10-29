@@ -1,7 +1,7 @@
 // login page
 import React, {Component} from "react";
 import { Redirect } from "react-router-dom"; // redirect the page
-import { Form, Input, Button, message} from 'antd'; // antd form 
+import { Form, Input, Button, message, Result} from 'antd'; // antd form 
 import { UserOutlined, LockOutlined } from '@ant-design/icons'; // antd form
 
 import './login.less' // less style
@@ -9,6 +9,7 @@ import lego from '../../assets/images/LEGO.png' // lego logo
 
 import {userLogin} from '../../api' // userLogin api
 import storeUser from '../../utils/storeUserName' // use to store information for login and display user name on the main page
+import memoryUser from '../../utils/memoryUser' // store user
 
 export default class Login extends Component {
     // after form submit, handle the data pass to the back-end
@@ -19,10 +20,13 @@ export default class Login extends Component {
             // 0 success, 1 unsuccess
             if(Response.data.status === 0) {
                 message.success('Login successful')
-                // router to main page
-                this.props.history.replace('/main')
+                // store the user to memory
+                memoryUser.user = Response.data
                 // store user info
                 storeUser.saveUser(Response.data)
+                // router to main page
+                console.log(this)
+                this.props.history.replace('/main')
             }else {
                 message.error('Login failed')
             }
@@ -31,10 +35,12 @@ export default class Login extends Component {
 
     render() {
         // auto login, if localStorage has user value
-        if(storeUser.loadUser()) {
+        const user = memoryUser.user.data
+        console.log(user)
+        if(user && user._id) {
             return <Redirect to='/main'/>
         }
-        
+
         return (
             <div className="login">
                 <header className="login-header">

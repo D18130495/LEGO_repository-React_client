@@ -1,10 +1,17 @@
 import React, {Component} from "react";
+import { withRouter } from 'react-router-dom'
 import './header.less' // less style file
 
-import {formateTime} from '../../utils/currentTime' // util to formate and get current time
-import storeUser from '../../utils/storeUserName' // use to store information for login and display user name on the main page
+import { Modal } from "antd"; // style for logout
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
-export default class Header extends Component {
+import {formateTime} from '../../utils/currentTime' // util to formate and get current time
+import storeUser from '../../utils/storeUserName' // use to store information for login and display user name on the main page, and use to delete user information to logout
+import memoryUser from "../../utils/memoryUser" // store user
+
+const { confirm } = Modal;
+
+class Header extends Component {
 
     // set the state
     state = {
@@ -14,7 +21,7 @@ export default class Header extends Component {
 
     // refash the time, start timer and set interval for 1 second
     refashTime = () => {
-        setInterval(() => {
+        this.intervalId = setInterval(() => {
             var currentTime = formateTime(Date.now())
             this.setState({currentTime})
         }, 1000)
@@ -25,6 +32,23 @@ export default class Header extends Component {
         this.refashTime()
     }
 
+    componentWillUnmount() {
+        clearInterval(this.intervalId)
+    }
+
+    logout = () => {
+        confirm({
+            title: 'Do you Want to logout?',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Click "OK" to logout',
+            onOk: () => {
+                storeUser.deleteUser()
+                memoryUser.user = {}
+                this.props.history.replace('/login')
+            }
+        })
+    }
+
     render() {
 
         const { currentTime, username } = this.state
@@ -33,7 +57,7 @@ export default class Header extends Component {
             <div className="header">
                 <div className="header-top">
                     <span>Hello, {username}</span>
-                    <a href="www">logout</a>
+                    <button onClick={this.logout}>logout</button>
                 </div>
 
                 <div className="header-bottom">
@@ -44,3 +68,5 @@ export default class Header extends Component {
         )
     }
 }
+
+export default withRouter(Header)
