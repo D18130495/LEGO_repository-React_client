@@ -1,7 +1,7 @@
 // login page
 import React, {Component} from "react";
 import { Redirect } from "react-router-dom"; // redirect the page
-import { Form, Input, Button, message, Result} from 'antd'; // antd form 
+import { Form, Input, Button, message} from 'antd'; // antd form 
 import { UserOutlined, LockOutlined } from '@ant-design/icons'; // antd form
 
 import './login.less' // less style

@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom'
 import './left-nav.less' // less style
 
 import lego from '../../assets/images/LEGO.png' // LEGO logo
-import { Menu, Button } from 'antd';
+import { Menu } from 'antd'; // ante style
 import {
     AppstoreOutlined,
     ApartmentOutlined,
@@ -16,8 +17,12 @@ import {
 
   const { SubMenu } = Menu
 
-export default class LeftNav extends Component {
+class LeftNav extends Component {
     render() {
+
+        const path = this.props.location.pathname
+        console.log(path)
+
         return (
             <div className="left-nav">
                 <header className="left-nav-header">
@@ -25,20 +30,20 @@ export default class LeftNav extends Component {
                     <h1>LEGO Backstage</h1>
                 </header>
 
-                <Menu mode="inline" theme="light">
-                    <Menu.Item key="home" icon={<AppstoreOutlined />}>
+                <Menu mode="inline" theme="light" selectedKeys={[path]} defaultOpenKeys={['sub1', 'sub2']}>
+                    <Menu.Item key="/home" icon={<AppstoreOutlined />}>
                         <Link to='/home'>
                             Home
                         </Link>
                     </Menu.Item>
 
                     <SubMenu key="sub1" icon={<ClusterOutlined />} title="Manage LEGO sets">
-                        <Menu.Item key="category" icon={<ApartmentOutlined />}>
+                        <Menu.Item key="/category" icon={<ApartmentOutlined />}>
                             <Link to='/category'>
                                 Add category
                             </Link>
                         </Menu.Item>
-                        <Menu.Item key="setInfo" icon={<AppstoreAddOutlined />}>
+                        <Menu.Item key="/setInfo" icon={<AppstoreAddOutlined />}>
                             <Link to='/setInfo'>
                                 Add set information
                             </Link>
@@ -46,18 +51,20 @@ export default class LeftNav extends Component {
                     </SubMenu>
 
                     <SubMenu key="sub2" icon={<UserOutlined />} title="Manage user">
-                        <Menu.Item key="user" icon={<UserAddOutlined />}>
+                        <Menu.Item key="/user" icon={<UserAddOutlined />}>
                             <Link to='/user'>
                                 Add user
                             </Link>
                         </Menu.Item>
                     </SubMenu>
 
-                    <Menu.Item key="github" icon={<GithubOutlined />}>
-                        <span>GitHub</span><a href="https://github.com/D18130495/LEGO_repository-React_client" target='blank'/>        
+                    <Menu.Item key="/github" icon={<GithubOutlined />}>
+                        <a href="https://github.com/D18130495/LEGO_repository-React_client" src="github" target='blank'><span>GitHub</span></a>        
                     </Menu.Item>
                 </Menu>
             </div>
         )
     }
 }
+
+export default withRouter(LeftNav)

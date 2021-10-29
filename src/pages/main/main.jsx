@@ -31,13 +31,13 @@ export default class Main extends Component {
                 </Sider>
                 <Layout>
                     <Header></Header>
-                    <Content style={{background: '#fffbeb'}}>
+                    <Content style={{background: '#fff', margin: 20}}>
                         <Switch>
                             <Route path='/home' component={Home}></Route>
                             <Route path='/category' component={Category}></Route>
                             <Route path='/setinfo' component={SetInfo}></Route>
                             <Route path='/user' component={User}></Route>
-                            <Redirect to='/home'/> // Automatically direct to home if no one be chosen
+                            <Redirect to='/home'/> {/* Automatically direct to home if no one be chosen */}
                         </Switch>
                     </Content>
                     <Footer>Footer</Footer>
