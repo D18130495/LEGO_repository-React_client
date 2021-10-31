@@ -29,3 +29,8 @@ export function addCategory(categoryName, parentId) {
 export function updateCategory(categoryId, categoryName) {
     return ajax(PORT + '/manage/category/update', {categoryId, categoryName}, 'POST')
 }
+
+// set list pagination
+export function getSetList(pageNum, pageSize) {
+    return ajax(PORT + '/manage/product/list', {pageNum, pageSize}, 'GET')
+}

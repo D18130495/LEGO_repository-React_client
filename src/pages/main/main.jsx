@@ -35,7 +35,7 @@ export default class Main extends Component {
                         <Switch>
                             <Route path='/home' component={Home}></Route>
                             <Route path='/category' component={Category}></Route>
-                            <Route path='/setinfo' component={SetInfo}></Route>
+                            <Route path='/setInfo' component={SetInfo}></Route>
                             <Route path='/user' component={User}></Route>
                             <Redirect to='/home'/> {/* Automatically direct to home if no one be chosen */}
                         </Switch>

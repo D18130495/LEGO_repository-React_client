@@ -161,7 +161,7 @@ export default class Category extends React.Component {
 
         return (
             <Card title={title} extra={addButton}>
-                <Table dataSource={parentId === "0" ? categoryList : yearList} columns={columns} rowKey='_id' bordered pagination={{defaultPageSize: 5, showQuickJumper: true}}/>;
+                <Table dataSource={parentId === "0" ? categoryList : yearList} columns={columns} rowKey='_id' pagination={{defaultPageSize: 5, showQuickJumper: true}}/>
             
                 <Modal title="Add category" visible={showTable === 1} onOk={this.addCategory} onCancel={this.handleCancel}>
                     <AddForm parentId={parentId} getInputAdd={this.addcate}></AddForm>
