@@ -19,7 +19,7 @@ export default class Login extends Component {
             // console.log(Response.data)
             // 0 success, 1 unsuccess
             if(Response.data.status === 0) {
-                message.success('Login successful')
+                message.success('Login successful.')
                 // store the user to memory
                 memoryUser.user = Response.data
                 // store user info
@@ -28,7 +28,7 @@ export default class Login extends Component {
                 console.log(this)
                 this.props.history.replace('/main')
             }else {
-                message.error('Login failed')
+                message.error('Login failed, please check username and password.')
             }
         })
     };
@@ -65,7 +65,7 @@ export default class Login extends Component {
                         <Form.Item name="password" 
                             rules={[
                                 { required: true, whitespace: true, message: 'Please input your Password!' },
-                                { min: 5, message: 'Password must be at least 5 character'},
+                                { min: 5, message: 'Password must be at least 6 character'},
                                 { max: 14, message: 'Password can not exceed 14 character'},
                                 { pattern: /^[a-zA-Z0-9]+$/, message: 'Password must be character or numbers'}
                             ]}

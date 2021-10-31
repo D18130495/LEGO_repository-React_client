@@ -21,7 +21,6 @@ class LeftNav extends Component {
     render() {
 
         const path = this.props.location.pathname
-        console.log(path)
 
         return (
             <div className="left-nav">
