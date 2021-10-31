@@ -5,7 +5,7 @@ import React from "react";
 import { Card, Table, Button, message, Modal } from 'antd' // antd card, table and button component
 import { PlusSquareOutlined, RightSquareOutlined } from '@ant-design/icons'; // antd icon
 
-import {getCategoryList, updateCategory} from '../../api' // api to get category list
+import {getCategoryList, updateCategory, addCategory} from '../../api' // api to get category list
 import AddForm from "../../components/addForm/addForm"; // add form component
 import UpdateForm from '../../components/updateForm/updateForm' // update form component
 
@@ -14,6 +14,7 @@ export default class Category extends React.Component {
     constructor(props) {
         super(props)
         this.cname = React.createRef()
+        this.addcate = React.createRef()
     }
 
     state = {
@@ -72,8 +73,18 @@ export default class Category extends React.Component {
         })
     }
 
-    addCategory = () => {
+    addCategory = async () => {
+        this.setState({ // after add, invisiable update form
+            showTable: 0
+        })
 
+        const categoryName = this.addcate.current.state.value
+        const parentId = this.addcate.current.props.text
+        
+        // send add request
+        const result = await addCategory(categoryName, parentId) 
+
+        this.getCategory() // reload theme list
     }
 
     // update category
@@ -88,11 +99,6 @@ export default class Category extends React.Component {
 
         // send update request
         const result = await updateCategory(categoryId, categoryName)
-        if(result.status === 0) {
-
-        }else {
-
-        }
 
         this.getCategory() // reload theme list
     }
@@ -116,7 +122,7 @@ export default class Category extends React.Component {
     render() {
         const {categoryList, yearList, parentId, parentName, showTable} = this.state
 
-        const category = this.category || {} // 
+        const category = this.category || {}
 
         const title = parentId === '0' ? 'Lego set theme' : (
             <span>
@@ -158,7 +164,7 @@ export default class Category extends React.Component {
                 <Table dataSource={parentId === "0" ? categoryList : yearList} columns={columns} rowKey='_id' bordered pagination={{defaultPageSize: 5, showQuickJumper: true}}/>;
             
                 <Modal title="Add category" visible={showTable === 1} onOk={this.addCategory} onCancel={this.handleCancel}>
-                    <AddForm></AddForm>
+                    <AddForm parentId={parentId} getInputAdd={this.addcate}></AddForm>
                 </Modal>
 
                 {/* update category, give the category name to the update form and get input back from update form */}
