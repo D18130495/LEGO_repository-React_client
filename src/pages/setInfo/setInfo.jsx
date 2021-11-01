@@ -2,7 +2,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import SetInfoHome from './home'
+import SetInfoHome from './setInfoHome'
 import SetInfoDetail from './detail'
 import SetInfoAddOrUpdate from './addOrUpdate'
 

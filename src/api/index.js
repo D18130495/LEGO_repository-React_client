@@ -34,3 +34,8 @@ export function updateCategory(categoryId, categoryName) {
 export function getSetList(pageNum, pageSize) {
     return ajax(PORT + '/manage/product/list', {pageNum, pageSize}, 'GET')
 }
+
+// search set info
+export function searchSetInfo(pageNum, pageSize, searchName) {
+    return ajax(PORT + '/manage/product/search', {pageNum, pageSize, searchName}, 'GET')
+}

@@ -26,14 +26,16 @@
 
 ```
 LEGO Repositories
-├── api -- Axios to send Ajax requests(GET, POST)
+├── api-- Axios to send Ajax requests(GET, POST)
+│      ├── ajax.js -- Use Axios to send Ajax request
+│      └── index.js -- Encapsulate all request, and defined request URL
+│    
 ├── assets -- General resources
 ├── components -- Some components of page 
 ├── pages ├──
-          ├──
+│         ├──
+│         └──
 ├── utils -- some utils
-├── 
-├── 
 ├── 
 ├── 
 ├── 

@@ -1,6 +1,6 @@
 // setInfo main page
 import React from "react";
-import { Card, Select, Input, Button, Table } from 'antd'; // antd component
+import { Card, Button, Table } from 'antd'; // antd component
 import { PlusSquareOutlined } from '@ant-design/icons'; // antd icon
 import { getSetList } from '../../api' // api to send request
 
@@ -67,14 +67,7 @@ export default class SetInfoHome extends React.Component {
         const {setList, total} = this.state
 
         const title = (
-            <span>
-                <Select value='1' style={{width: 150}}>
-                    <Select.Option value='1'>123</Select.Option>
-                    <Select.Option value='2'>1234</Select.Option>
-                </Select>
-                <Input placeholder='gunjianzi' style={{width: 150, marginLeft: 10}}/>
-                <Button type='primary' style={{marginLeft: 10}}>Search</Button>
-            </span>
+           <span>Manage the LEGO sets.</span>
         )
 
         const extra = (

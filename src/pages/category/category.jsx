@@ -82,7 +82,7 @@ export default class Category extends React.Component {
         const parentId = this.addcate.current.props.text
         
         // send add request
-        const result = await addCategory(categoryName, parentId) 
+        await addCategory(categoryName, parentId) 
 
         this.getCategory() // reload theme list
     }
@@ -98,7 +98,7 @@ export default class Category extends React.Component {
         const categoryName = this.cname.current.state.value
 
         // send update request
-        const result = await updateCategory(categoryId, categoryName)
+        await updateCategory(categoryId, categoryName)
 
         this.getCategory() // reload theme list
     }

@@ -1,12 +1,18 @@
 // page for main => home
 import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 
-export default class Home extends React.Component {
+import SetInfoHome from './setInfoHome'
+import SetInfoDetail from './detail'
+
+export default class SetInfo extends React.Component {
     render() {
         return (
-            <div>
-                Home
-            </div>
+            <Switch>
+                <Route path='/home' component={SetInfoHome} exact/>
+                <Route path='/home/detail' component={SetInfoDetail}/>
+                <Redirect to='/home'/>
+            </Switch>
         )
     }
 }
