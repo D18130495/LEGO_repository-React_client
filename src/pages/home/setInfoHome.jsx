@@ -1,7 +1,6 @@
 // setInfo main page
 import React from "react";
 import { Card, Input, Button, Table } from 'antd'; // antd component
-import { PlusSquareOutlined } from '@ant-design/icons'; // antd icon
 import { getSetList, searchSetInfo } from '../../api' // api to send request
 
 export default class SetInfoHome extends React.Component {
@@ -81,15 +80,8 @@ export default class SetInfoHome extends React.Component {
             </span>
         )
 
-        const extra = (
-            <Button type='primary' style={{marginLeft: 10}}>
-                <PlusSquareOutlined />
-                Add
-            </Button>
-        )
-
         return (
-            <Card title={title} extra={extra}>
+            <Card title={title}>
                 <Table pagination={{total, defaultPageSize: 1, showQuickJumper: true, onChange: this.getSetList}} bordered rowKey='_id' dataSource={setList} columns={this.columns} />
             </Card>
         )

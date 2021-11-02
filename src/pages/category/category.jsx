@@ -132,10 +132,10 @@ export default class Category extends React.Component {
                 <span style={{marginLeft: 18}}>{parentName}</span>
             </span>
         )
-          
+        
         const columns = [
             {
-                title: 'Theme name',
+                title: this.state.parentId === '0' ? 'Theme name' : 'Year',
                 dataIndex: 'name',
             },
             {
