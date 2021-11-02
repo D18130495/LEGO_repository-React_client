@@ -39,3 +39,8 @@ export function getSetList(pageNum, pageSize) {
 export function searchSetInfo(pageNum, pageSize, searchName) {
     return ajax(PORT + '/manage/product/search', {pageNum, pageSize, searchName}, 'GET')
 }
+
+// get a category(year)
+export function getSetReleaseYear(categoryId) {
+    return ajax(PORT + '/manage/category/info', {categoryId}, 'GET')
+}

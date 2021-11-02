@@ -20,7 +20,12 @@ import {
 class LeftNav extends Component {
     render() {
 
-        const path = this.props.location.pathname
+        var path = this.props.location.pathname
+
+        if(path.indexOf('/home') === 0)
+        {
+            path = '/home'
+        }
 
         return (
             <div className="left-nav">
@@ -29,7 +34,7 @@ class LeftNav extends Component {
                     <h1>LEGO Backstage</h1>
                 </header>
 
-                <Menu mode="inline" theme="light" selectedKeys={[path]} defaultOpenKeys={['sub1', 'sub2']}>
+                <Menu mode="inline" theme="light" selectedKeys={path} defaultOpenKeys={['sub1', 'sub2']}>
                     <Menu.Item key="/home" icon={<AppstoreOutlined />}>
                         <Link to='/home'>
                             Home
