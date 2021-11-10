@@ -14,7 +14,7 @@ export default class AddForm extends React.Component {
             <Form>
                 <Form.Item>
                     {/* pass parentId and input value use ref to give them back */}
-                    <Input placeholder='Please input theme name' text={parentId} ref={this.props.getInputAdd}/>
+                    <Input placeholder={parentId === '0' ? 'Please input theme name' : 'Please input year'} text={parentId} ref={this.props.getInputAdd}/>
                 </Form.Item>
             </Form>
         )

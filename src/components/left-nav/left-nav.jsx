@@ -27,6 +27,11 @@ class LeftNav extends Component {
             path = '/home'
         }
 
+        if(path.indexOf('/setInfo') === 0)
+        {
+            path = '/setInfo'
+        }
+
         return (
             <div className="left-nav">
                 <header className="left-nav-header">

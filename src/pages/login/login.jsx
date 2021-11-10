@@ -54,9 +54,9 @@ export default class Login extends Component {
                         <Form.Item name="username" 
                             rules={[
                                 { required: true, whitespace: true, message: 'Please input your Username!' },
-                                { min: 3, message: 'Username must be at least 3 character'},
-                                { max: 10, message: 'Username can not exceed 10 character'},
-                                { pattern: /^[a-zA-Z0-9]+$/, message: 'Username must be character or numbers'}
+                                { min: 3, message: 'Username must be at least 3 character' },
+                                { max: 10, message: 'Username can not exceed 10 character' },
+                                { pattern: /^[a-zA-Z0-9]+$/, message: 'Username must be character or numbers' }
                             ]}
                         >
                             <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />

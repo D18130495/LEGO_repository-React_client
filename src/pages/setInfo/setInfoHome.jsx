@@ -54,7 +54,7 @@ export default class SetInfoHome extends React.Component {
                 render: (setList) => {
                     return (
                         <span>
-                            <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer' }}>Detail</button>
+                            <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer' }} onClick={() => this.props.history.push('/setInfo/detail', setList)}>Detail</button>
                             <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer', marginLeft: 30 }}>Modify</button>
                         </span>
                     )
@@ -71,7 +71,7 @@ export default class SetInfoHome extends React.Component {
         )
 
         const extra = (
-            <Button type='primary' style={{marginLeft: 10}}>
+            <Button type='primary' style={{marginLeft: 10}} onClick={() => this.props.history.push('/setInfo/addOrUpdate')}>
                 <PlusSquareOutlined />
                 Add
             </Button>
