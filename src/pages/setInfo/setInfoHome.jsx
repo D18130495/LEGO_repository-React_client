@@ -55,7 +55,7 @@ export default class SetInfoHome extends React.Component {
                     return (
                         <span>
                             <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer' }} onClick={() => this.props.history.push('/setInfo/detail', setList)}>Detail</button>
-                            <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer', marginLeft: 30 }}>Modify</button>
+                            <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer', marginLeft: 30 }} onClick={() => this.props.history.push('/setInfo/addOrUpdate', setList)}>Modify</button>
                         </span>
                     )
                 }

@@ -40,7 +40,6 @@ export default class Main extends Component {
                             <Redirect to='/home'/> {/* Automatically direct to home if no one be chosen */}
                         </Switch>
                     </Content>
-                    <Footer>Footer</Footer>
                 </Layout>
             </Layout>
         )
