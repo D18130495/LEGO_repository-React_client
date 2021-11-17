@@ -44,3 +44,18 @@ export function searchSetInfo(pageNum, pageSize, searchName) {
 export function getSetReleaseYear(categoryId) {
     return ajax(PORT + '/manage/category/info', {categoryId}, 'GET')
 }
+
+// remove the picture
+export function removePicture(name) {
+    return ajax(PORT + '/manage/img/delete', {name}, 'POST')
+}
+
+// add set info
+export function addSetInfo(set) {
+    return ajax(PORT + '/manage/set/add', set, 'POST')
+} 
+
+// update set info
+export function updateSetInfo(product) {
+    return ajax(PORT + '/manage/product/update', {product}, 'POST')
+} 

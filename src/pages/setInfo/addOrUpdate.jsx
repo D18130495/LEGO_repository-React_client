@@ -1,10 +1,13 @@
 // setInfo add or update page
 import React from "react";
-import { Card, Form, Input, Cascader, Button } from 'antd'; // antd compoment
+import { Card, Form, Input, Cascader, Button, message } from 'antd'; // antd compoment
 import { LeftOutlined } from '@ant-design/icons'; // antd icon
 
 import { getCategoryList } from '../../api' // to get category and year list, for the input of release year
+import { addSetInfo } from '../../api' // add set information
+import { updateSetInfo } from '../../api' // update set information
 
+import Wysiwyg from "../../components/wysiwyg/wysiwyg"; // set details text additer
 import UploadImage from "../../components/uploadImage/uploadImage"; // use to upload image
 
 export default class AddOrUpdate extends React.Component {
@@ -12,9 +15,16 @@ export default class AddOrUpdate extends React.Component {
         setName: '', // set name from input
         setDesc: '', // set desc from input
         setPrice: '', // set price from input
-        setYear: [], // set year from input
+        setYears: [], // set year from input
         options: [], // release year list
         childrenOptions: [], // release year children list
+    }
+
+    // get the picture from child component
+    constructor(props) {
+        super(props)
+        this.picture = React.createRef()
+        this.setDetailText = React.createRef()
     }
 
     // get release year list, and call the setOption to set the options date from api(getCategoryList)
@@ -79,8 +89,28 @@ export default class AddOrUpdate extends React.Component {
         }, 500); // slow 500ms to get the request back and set it on the second list
     };
 
-    onFinish = () => {
-        console.log(this.state)
+    onFinish = async () => {
+        const {setName, setDesc, setPrice, setYears} = this.state
+        const imgs = this.picture.current.getImgs()
+        const setDetailText = this.setDetailText.current.getSetDetail()
+        var setTheme, setYear
+        if(setYears.length === 1) {
+            setTheme = '0'
+            setYear = setYears[0]
+        }else {
+            setTheme = setYears[0]
+            setYear = setYears[1]
+        }
+
+        const set = {setName, setDesc, setPrice, imgs, setDetailText, setTheme, setYear}
+        console.log(set)
+        const result = await addSetInfo(set)
+        console.log(result)
+        if(result.data.status === 0) {
+            message.success("ok")
+        }else {
+            message.error("no")
+        }  
     }
 
     addSetInfo = async() => {
@@ -91,11 +121,11 @@ export default class AddOrUpdate extends React.Component {
     // get the release year before load the page
     componentDidMount() {
         this.getCategory('0')
-        console.log(this.props.location.state)
+        console.log( this.props.location.state)
     }
     
     render() {
-        const { setName, setDesc,setPrice, setYear } = this.state // get each element from state
+        const { setName, setDesc,setPrice, setYears } = this.state // get each element from state
 
         // layout of the input item
         const formItemLayout = {
@@ -149,21 +179,21 @@ export default class AddOrUpdate extends React.Component {
                     </Form.Item>
 
                     <Form.Item label="Set release year"
-                        name="setYear"
+                        name="setYears"
                         rules={[
                             { required: true, message: 'Please select set year' }
                         ]}
                     >
                         <Cascader options={this.state.options} loadData={this.loadData}
-                        value={setYear} onChange={(value) => this.setState({setYear:value})}/>
+                        value={setYears} onChange={(value) => this.setState({setYears:value})}/>
                     </Form.Item>
 
-                    <Form.Item label="Set pictures">
-                        <UploadImage/>
+                    <Form.Item label="Set pictures" labelCol={{span:2}} wrapperCol={{span:8}}>
+                        <UploadImage ref={this.picture} defaultValue={this.props.location.state? this.props.location.state.imgs : null}/>
                     </Form.Item>
 
-                    <Form.Item label="Set detail">
-                        <Input type='number' placeholder='Please input set price'/>
+                    <Form.Item label="Set detail" labelCol={{span:2}} wrapperCol={{span:20}}>
+                        <Wysiwyg ref={this.setDetailText} defaultValue={this.props.location.state? this.props.location.state.detail : null}/>
                     </Form.Item>
 
                     <Form.Item>

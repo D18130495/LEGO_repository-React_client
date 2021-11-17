@@ -1,7 +1,10 @@
 // component use to upload image
 import React from 'react';
-import { Upload, Modal } from 'antd';
+import PropType from 'prop-types'
+import { Upload, Modal, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+
+import {removePicture} from '../../api'
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -13,13 +16,40 @@ function getBase64(file) {
 }
 
 export default class UploadImage extends React.Component {
+  static propTypes = {
+    defaultValue : PropType.array
+  }
+
   state = {
     previewVisible: false,
     previewImage: '',
     previewTitle: '',
-    fileList: [
-    ],
+    fileList: [],
   };
+
+  // use to display the picture back
+  constructor(props) {
+    super(props)
+
+    var fileList = []
+
+    const {defaultValue} = this.props
+    if(defaultValue && defaultValue.length > 0) {
+      fileList = defaultValue.map((img, index) => ({
+        uid: -index,
+        name: img,
+        status: 'done',
+        url:'http://localhost:5000/upload/' + img
+      }))
+    }
+
+    this.state = {
+      previewVisible: false,
+      previewImage: '',
+      previewTitle: '',
+      fileList
+    }
+  }
 
   handleCancel = () => this.setState({ previewVisible: false });
 
@@ -35,10 +65,34 @@ export default class UploadImage extends React.Component {
     });
   };
 
-  handleChange = ({ fileList }) => (
-      
-    this.setState({ fileList })
-  );
+  // onchange, when the image is upload call this method
+  handleChange = async ({ file, fileList }) => {
+    // if successfully upload, status should be done
+    this.setState({fileList})
+    if(file.status === 'done') {
+      const result = file.response
+      if(result.status === 0) {
+        message.success('successfully upload picture.')
+        const {name, url} = result.data
+        fileList[fileList.length - 1].name = name // reset the fileList attributes
+        fileList[fileList.length - 1].url = url // reset the fileList attributes
+      } else {
+        message.error('upload picture failed')
+      }
+    }else if(file.status==='removed') {
+      // when select the picutre, it will auto upload, if remove need call remove API
+      const result = await removePicture(file.name)
+      if(result.status === 0) {
+        message.success('successfully remove picture.')
+      }else {
+        message.error('remove picture failed.')
+      }
+    }
+  };
+
+  getImgs = () => {
+    return this.state.fileList.map(file => file.name)
+  }
 
   render() {
     const { previewVisible, previewImage, fileList, previewTitle } = this.state;
@@ -51,7 +105,7 @@ export default class UploadImage extends React.Component {
     return (
       <>
         <Upload
-          action="/manage/img/upload" // api to upload image
+          action="/manage/img/upload" // api to upload image, when select the picutre, it will auto upload
           accept='image/*' // only accept image
           name='image' // request name
           listType="picture-card"
