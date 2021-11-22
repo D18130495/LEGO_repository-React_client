@@ -16,7 +16,7 @@ export default class SetInfoHome extends React.Component {
     }
 
     componentDidMount() {
-        this.getSetList(1) // display set list
+        this.getSetList(1) // display set list, display first page
     }
 
     getSetList = async (pageNum) => { // send get set list request
@@ -24,12 +24,12 @@ export default class SetInfoHome extends React.Component {
         var result
 
         if(searchName) { // after search display list, or just display list
-            result = await searchSetInfo(pageNum, 1, searchName) // 1 is page size
+            result = await searchSetInfo(pageNum, 5, searchName) // 5 is page size, use to search set info
         }else {
-            result = await getSetList(pageNum, 1) // 1 is page size
+            result = await getSetList(pageNum, 5) // 5 is page size, without search input
         }
 
-        if(result.data.status === 0) {
+        if(result.data.status === 0) { // if successfully get the data back, set total and setList with result 
             const { total, list } = result.data.data
             this.setState({
                 total,
@@ -82,7 +82,7 @@ export default class SetInfoHome extends React.Component {
 
         return (
             <Card title={title}>
-                <Table pagination={{total, defaultPageSize: 1, showQuickJumper: true, onChange: this.getSetList}} bordered rowKey='_id' dataSource={setList} columns={this.columns} />
+                <Table pagination={{total, defaultPageSize: 5, showQuickJumper: true, onChange: this.getSetList}} bordered rowKey='_id' dataSource={setList} columns={this.columns} />
             </Card>
         )
     }

@@ -1,5 +1,4 @@
-// page for main => category
-// page for main => home
+// page for main => theme
 import React from "react";
 
 import { Card, Table, Button, message, Modal } from 'antd' // antd card, table and button component
@@ -9,7 +8,7 @@ import {getCategoryList, updateCategory, addCategory} from '../../api' // api to
 import AddForm from "../../components/addForm/addForm"; // add form component
 import UpdateForm from '../../components/updateForm/updateForm' // update form component
 
-export default class Category extends React.Component {
+export default class Theme extends React.Component {
     // create cname use get input from update form component
     constructor(props) {
         super(props)
@@ -18,24 +17,25 @@ export default class Category extends React.Component {
     }
 
     state = {
-        categoryList: [], // theme list
+        categoryList: [], // category list
         yearList: [], // year list
-        parentId: '0', // parentId use to display years
-        parentName: '', // theme name
+        parentId: '0', // parentId use to display view year option
+        parentName: '', // category name
         showTable: 0, // invisible add form and update form 0, visible add form 1, visible update form 2 
     }
 
-    // init to get theme list
+    // init to get category list
     componentDidMount() {
         this.getCategory()
     }
 
+    // use to set list, get the categoryList or yearList decided which should display
     getCategory = async () => {
         const {parentId} = this.state
         const result = await getCategoryList(parentId) // send get category request
         if(result.data.status === 0) { // successful get list
             const categoryList = result.data.data
-            if(parentId === '0') { // if result is 0, display theme list
+            if(parentId === '0') { // if result is 0, display category list
                 this.setState({categoryList : categoryList})
             }else { // result is parentId and not 0, display year list belong that parentId
                 this.setState({yearList : categoryList})
@@ -46,17 +46,18 @@ export default class Category extends React.Component {
     }
 
     // get the year list, get categoryList after click view year button, 
-    // pass the categoryList and set state parentId to theme Id, and call the getCategory to display year list
+    // pass the categoryList and set state parentId to category Id, and call the getCategory to display year list
     getYearList = (categoryList) => {
         this.setState({
+            // set the parentId and parentName, use to know which category been clicked
             parentId: categoryList._id,
             parentName: categoryList.name
         }, () => {
-            this.getCategory()
+            this.getCategory() // display the yearList
         })
     }
 
-    // use to get back to the theme list, set state to 0, and call getCategory to display theme list
+    // use to get back to the category list, set state to 0, and call getCategory to display category list
     backCategory = () => {
         this.setState({
             parentId: '0',
@@ -73,18 +74,20 @@ export default class Category extends React.Component {
         })
     }
 
+    // add category
     addCategory = async () => {
         this.setState({ // after add, invisiable update form
             showTable: 0
         })
 
-        const categoryName = this.addcate.current.state.value
+        // get name and parentId(from child component use creatRef)
+        const name = this.addcate.current.state.value
         const parentId = this.addcate.current.props.text
         
         // send add request
-        await addCategory(categoryName, parentId) 
+        await addCategory(name, parentId) 
 
-        this.getCategory() // reload theme list
+        this.getCategory() // reload category list
     }
 
     // update category
@@ -93,14 +96,14 @@ export default class Category extends React.Component {
             showTable: 0
         })
        
-        // get categoryId and categoryName(from child component use creatRef)
-        const categoryId = this.category._id
-        const categoryName = this.cname.current.state.value
+        // get name and parentId(from child component use creatRef)
+        const name = this.cname.current.state.value
+        const parentId = this.category._id
 
         // send update request
-        await updateCategory(categoryId, categoryName)
+        await updateCategory(name, parentId)
 
-        this.getCategory() // reload theme list
+        this.getCategory() // reload category list
     }
 
     // set state showTable to 1, make add form visible
@@ -124,9 +127,10 @@ export default class Category extends React.Component {
 
         const category = this.category || {}
 
+        // if parent ID === 0, the categoryList display Lego set theme, if not equal 0, display <span>
         const title = parentId === '0' ? 'Lego set theme' : (
             <span>
-                {/* go back to the theme list */}
+                {/* go back to the category list */}
                 <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer', marginRight: 10, paddingLeft : 0 }} onClick={this.backCategory}>Lego set theme</button>
                 <RightSquareOutlined />
                 <span style={{marginLeft: 18}}>{parentName}</span>
@@ -151,7 +155,7 @@ export default class Category extends React.Component {
             },
         ];
 
-        // use to add theme or year
+        // use to add category or year
         const addButton = (
             <Button type='primary' onClick={this.showAdd}>
                 <PlusSquareOutlined />

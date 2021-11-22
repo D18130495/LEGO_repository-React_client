@@ -20,8 +20,9 @@ export default class SetInfoHome extends React.Component {
     }
 
     getSetList = async (pageNum) => { // send get set list request
-        const result = await getSetList(pageNum, 1) // 1 is page size
-        if(result.data.status === 0) {
+        const result = await getSetList(pageNum, 5) // 5 is page size
+
+        if(result.data.status === 0) { // query the data and store in the setList
             const { total, list } = result.data.data
             this.setState({
                 total,
@@ -79,7 +80,7 @@ export default class SetInfoHome extends React.Component {
 
         return (
             <Card title={title} extra={extra}>
-                <Table pagination={{total, defaultPageSize: 1, showQuickJumper: true, onChange: this.getSetList}} bordered rowKey='_id' dataSource={setList} columns={this.columns} />
+                <Table pagination={{total, defaultPageSize: 5, showQuickJumper: true, onChange: this.getSetList}} bordered rowKey='_id' dataSource={setList} columns={this.columns} />
             </Card>
         )
     }

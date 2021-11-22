@@ -10,11 +10,11 @@ import Header from "../../components/header/header";
 import memoryUser from "../../utils/memoryUser"; // get username
 
 import Home from '../home/home'
-import Category from "../category/category";
+import Theme from '../theme/theme'
 import SetInfo from "../setInfo/setInfo";
 import User from "../user/user";
 
-const { Footer, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 export default class Main extends Component {
     render() {
@@ -34,7 +34,7 @@ export default class Main extends Component {
                     <Content style={{background: '#fff', margin: 20}}>
                         <Switch>
                             <Route path='/home' component={Home}></Route>
-                            <Route path='/category' component={Category}></Route>
+                            <Route path='/theme' component={Theme}></Route>
                             <Route path='/setInfo' component={SetInfo}></Route>
                             <Route path='/user' component={User}></Route>
                             <Redirect to='/home'/> {/* Automatically direct to home if no one be chosen */}

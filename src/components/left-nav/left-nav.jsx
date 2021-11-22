@@ -47,9 +47,9 @@ class LeftNav extends Component {
                     </Menu.Item>
 
                     <SubMenu key="sub1" icon={<ClusterOutlined />} title="Manage LEGO sets">
-                        <Menu.Item key="/category" icon={<ApartmentOutlined />}>
-                            <Link to='/category'>
-                                Add category
+                        <Menu.Item key="/theme" icon={<ApartmentOutlined />}>
+                            <Link to='/theme'>
+                                Add theme
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="/setInfo" icon={<AppstoreAddOutlined />}>

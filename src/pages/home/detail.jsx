@@ -15,10 +15,11 @@ export default class Detail extends React.Component {
     }
 
     // send categoryId to find year of the set release
+    // when the page load, do this
     async componentDidMount() {
-        const categoryId = this.props.location.state.categoryId
-        const result = await getSetReleaseYear(categoryId)
-        this.setState({year : result.data.data.name })
+        const categoryId = this.props.location.state.categoryId // get the data from history 
+        const result = await getSetReleaseYear(categoryId) // call the API to get the category info
+        this.setState({year : result.data.data.name }) // set the year to the data from database
     }
 
     render() {
@@ -61,7 +62,7 @@ export default class Detail extends React.Component {
                         <span>
                             {
                                 set.imgs.map(img => (
-                                    <img key={img} src={'http://localhost:5000/upload/' + img} alt="img"/>
+                                    <img key={img} src={'http://localhost:41571/upload/' + img} alt="img"/>
                                 ))
                             }
                         </span>
@@ -69,7 +70,7 @@ export default class Detail extends React.Component {
 
                     <List.Item style={{ justifyContent: 'left'}}>
                         <span className="leftList">Set detail: </span>
-                        
+                        {/* display the data from html format */}
                         <span dangerouslySetInnerHTML={{__html: set.detail}}/>
                     </List.Item>
                 </List>

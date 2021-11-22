@@ -15,39 +15,41 @@ export function addUser(user) {
     return ajax(PORT + '/manage/user/add', user, 'POST')
 }
 
+//--------------------------operation with category------------------------------------
 // get category list
 export function getCategoryList(parentId) {
     return ajax(PORT + '/manage/category/list', {parentId}, 'GET')
 }
 
 // add category
-export function addCategory(categoryName, parentId) {
-    return ajax(PORT + '/manage/category/add', {categoryName, parentId}, 'POST')
+export function addCategory(name, parentId) {
+    return ajax(PORT + '/manage/category/add', {name, parentId}, 'POST')
 }
 
 // update category
-export function updateCategory(categoryId, categoryName) {
-    return ajax(PORT + '/manage/category/update', {categoryId, categoryName}, 'POST')
+export function updateCategory(name, parentId) {
+    return ajax(PORT + '/manage/category/update', {name, parentId}, 'POST')
 }
 
-// set list pagination
+// get a category(year)
+// for redisplay the data in the detail
+export function getSetReleaseYear(categoryId) {
+    return ajax(PORT + '/manage/category/year', {categoryId}, 'GET')
+}
+//-------------------------------------------------------------------------------------
+
+
+
+
+//--------------------------operation with set list------------------------------------
+// set list pagination, get the data back from database
 export function getSetList(pageNum, pageSize) {
-    return ajax(PORT + '/manage/product/list', {pageNum, pageSize}, 'GET')
+    return ajax(PORT + '/manage/set/list', {pageNum, pageSize}, 'GET')
 }
 
 // search set info
 export function searchSetInfo(pageNum, pageSize, searchName) {
-    return ajax(PORT + '/manage/product/search', {pageNum, pageSize, searchName}, 'GET')
-}
-
-// get a category(year)
-export function getSetReleaseYear(categoryId) {
-    return ajax(PORT + '/manage/category/info', {categoryId}, 'GET')
-}
-
-// remove the picture
-export function removePicture(name) {
-    return ajax(PORT + '/manage/img/delete', {name}, 'POST')
+    return ajax(PORT + '/manage/set/search', {pageNum, pageSize, searchName}, 'GET')
 }
 
 // add set info
@@ -56,6 +58,15 @@ export function addSetInfo(set) {
 } 
 
 // update set info
-export function updateSetInfo(product) {
-    return ajax(PORT + '/manage/product/update', {product}, 'POST')
-} 
+export function updateSetInfo(set) {
+    return ajax(PORT + '/manage/set/update', {set}, 'POST')
+}
+//-------------------------------------------------------------------------------------
+
+
+
+// remove the picture
+export function removePicture(name) {
+    return ajax(PORT + '/manage/img/delete', {name}, 'POST')
+}
+

@@ -39,7 +39,7 @@ export default class UploadImage extends React.Component {
         uid: -index,
         name: img,
         status: 'done',
-        url:'http://localhost:5000/upload/' + img
+        url:'http://localhost:41571/upload/' + img
       }))
     }
 
