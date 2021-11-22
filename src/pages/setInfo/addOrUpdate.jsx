@@ -12,21 +12,21 @@ import UploadImage from "../../components/uploadImage/uploadImage"; // use to up
 
 export default class AddOrUpdate extends React.Component {
     state = {
-        setName: '', // set name from input
-        setDesc: '', // set desc from input
-        setPrice: '', // set price from input
+        name: '', // set name from input
+        desc: '', // set desc from input
+        price: '', // set price from input
         setYears: [], // set year from input
         options: [], // release year list
         childrenOptions: [], // release year children list
     }
-
+    
     // get the picture from child component
     constructor(props) {
         super(props)
         this.picture = React.createRef()
         this.setDetailText = React.createRef()
     }
-
+    setPrice
     // get release year list, and call the setOption to set the options date from api(getCategoryList)
     getCategory = async (parentId) => {
         const result = await getCategoryList(parentId)
@@ -90,19 +90,19 @@ export default class AddOrUpdate extends React.Component {
     };
 
     onFinish = async () => {
-        const {setName, setDesc, setPrice, setYears} = this.state
+        const {name, desc, price, setYears} = this.state
         const imgs = this.picture.current.getImgs()
-        const setDetailText = this.setDetailText.current.getSetDetail()
-        var setTheme, setYear
+        const detail = this.setDetailText.current.getSetDetail()
+        var pCategoryId, categoryId
         if(setYears.length === 1) {
-            setTheme = '0'
-            setYear = setYears[0]
+            categoryId = '0'
+            pCategoryId = setYears[0]
         }else {
-            setTheme = setYears[0]
-            setYear = setYears[1]
+            categoryId = setYears[0]
+            pCategoryId = setYears[1]
         }
 
-        const set = {setName, setDesc, setPrice, imgs, setDetailText, setTheme, setYear}
+        const set = {name, desc, price, imgs, detail, categoryId, pCategoryId}
         console.log(set)
         const result = await addSetInfo(set)
         console.log(result)
@@ -125,7 +125,7 @@ export default class AddOrUpdate extends React.Component {
     }
     
     render() {
-        const { setName, setDesc,setPrice, setYears } = this.state // get each element from state
+        const { name, desc, price, setYears } = this.state // get each element from state
 
         // layout of the input item
         const formItemLayout = {
@@ -152,7 +152,7 @@ export default class AddOrUpdate extends React.Component {
                     >
                         <Input placeholder='Please input set name'
                         defaultValue={this.props.location.state? this.props.location.state.name : null}
-                        value={setName} onChange={event => this.setState({setName:event.target.value})}/>
+                        value={name} onChange={event => this.setState({name:event.target.value})}/>
                     </Form.Item>
 
                     <Form.Item label="Set description"
@@ -163,7 +163,7 @@ export default class AddOrUpdate extends React.Component {
                     >
                         <Input placeholder='Please input set description'
                         defaultValue={this.props.location.state? this.props.location.state.desc : null}
-                        value={setDesc} onChange={event => this.setState({setDesc:event.target.value})}/>
+                        value={desc} onChange={event => this.setState({desc:event.target.value})}/>
                     </Form.Item>
 
                     <Form.Item label="Set price"
@@ -175,7 +175,7 @@ export default class AddOrUpdate extends React.Component {
                     >
                         <Input type='number' placeholder='Please input set price' addonAfter='€'
                         defaultValue={this.props.location.state? this.props.location.state.price : null}
-                        value={setPrice} onChange={event => this.setState({setPrice:event.target.value})}/>
+                        value={price} onChange={event => this.setState({price:event.target.value})}/>
                     </Form.Item>
 
                     <Form.Item label="Set release year"

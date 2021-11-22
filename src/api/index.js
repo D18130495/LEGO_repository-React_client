@@ -54,7 +54,7 @@ export function searchSetInfo(pageNum, pageSize, searchName) {
 
 // add set info
 export function addSetInfo(set) {
-    return ajax(PORT + '/manage/set/add', set, 'POST')
+    return ajax(PORT + '/manage/set/add', {set}, 'POST')
 } 
 
 // update set info
