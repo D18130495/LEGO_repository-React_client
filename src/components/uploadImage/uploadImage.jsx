@@ -82,7 +82,7 @@ export default class UploadImage extends React.Component {
     }else if(file.status==='removed') {
       // when select the picutre, it will auto upload, if remove need call remove API
       const result = await removePicture(file.name)
-      if(result.status === 0) {
+      if(result.data.status === 0) {
         message.success('successfully remove picture.')
       }else {
         message.error('remove picture failed.')
