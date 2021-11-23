@@ -95,33 +95,37 @@ export default class AddOrUpdate extends React.Component {
         const detail = this.setDetailText.current.getSetDetail()
         var pCategoryId, categoryId
         if(setYears.length === 1) {
-            categoryId = '0'
-            pCategoryId = setYears[0]
-        }else {
+            pCategoryId = '0'
             categoryId = setYears[0]
-            pCategoryId = setYears[1]
+        }else {
+            pCategoryId = setYears[0]
+            categoryId = setYears[1]
         }
 
         const set = {name, desc, price, imgs, detail, categoryId, pCategoryId}
+        var result = ''
         console.log(set)
-        const result = await addSetInfo(set)
-        console.log(result)
+        if(this.props.location.state) {
+            set._id = this.props.location.state._id
+            console.log(set)
+            result = await updateSetInfo(set)
+        }else {
+            result = await addSetInfo(set)
+        }
+        
         if(result.data.status === 0) {
             message.success("ok")
+            this.props.history.goBack()
         }else {
             message.error("no")
+            this.props.history.goBack()
         }  
-    }
-
-    addSetInfo = async() => {
-        // console.log(this.state)
-        this.props.history.goBack()
     }
 
     // get the release year before load the page
     componentDidMount() {
         this.getCategory('0')
-        console.log( this.props.location.state)
+        console.log(this.props.location.state)
     }
     
     render() {
@@ -151,7 +155,7 @@ export default class AddOrUpdate extends React.Component {
                         ]}
                     >
                         <Input placeholder='Please input set name'
-                        defaultValue={this.props.location.state? this.props.location.state.name : null}
+                        placeholder={this.props.location.state? this.props.location.state.name : null}
                         value={name} onChange={event => this.setState({name:event.target.value})}/>
                     </Form.Item>
 
@@ -162,7 +166,7 @@ export default class AddOrUpdate extends React.Component {
                         ]}
                     >
                         <Input placeholder='Please input set description'
-                        defaultValue={this.props.location.state? this.props.location.state.desc : null}
+                        placeholder={this.props.location.state? this.props.location.state.desc : null}
                         value={desc} onChange={event => this.setState({desc:event.target.value})}/>
                     </Form.Item>
 
@@ -174,7 +178,7 @@ export default class AddOrUpdate extends React.Component {
                         ]}
                     >
                         <Input type='number' placeholder='Please input set price' addonAfter='€'
-                        defaultValue={this.props.location.state? this.props.location.state.price : null}
+                        placeholder={this.props.location.state? this.props.location.state.price : null}
                         value={price} onChange={event => this.setState({price:event.target.value})}/>
                     </Form.Item>
 
@@ -197,7 +201,7 @@ export default class AddOrUpdate extends React.Component {
                     </Form.Item>
 
                     <Form.Item>
-                        <Button type='primary' htmlType="submit" style={{marginTop:'15px'}} onClick={() => this.addSetInfo()}>
+                        <Button type='primary' htmlType="submit" style={{marginTop:'15px'}}>
                             submit
                         </Button>
                     </Form.Item>

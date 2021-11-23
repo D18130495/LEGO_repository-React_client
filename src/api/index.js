@@ -59,7 +59,12 @@ export function addSetInfo(set) {
 
 // update set info
 export function updateSetInfo(set) {
-    return ajax(PORT + '/manage/set/update', {set}, 'POST')
+    return ajax(PORT + '/manage/set/update', set, 'POST')
+}
+
+// delete set info
+export function deleteSetInfo(setID) {
+    return ajax(PORT + '/manage/set/delete', {setID}, 'GET')
 }
 //-------------------------------------------------------------------------------------
 

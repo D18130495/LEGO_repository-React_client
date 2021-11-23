@@ -1,8 +1,9 @@
 // setInfo main page
 import React from "react";
-import { Card, Button, Table } from 'antd'; // antd component
+import { Card, Button, Table, message } from 'antd'; // antd component
 import { PlusSquareOutlined } from '@ant-design/icons'; // antd icon
 import { getSetList } from '../../api' // api to send request
+import { deleteSetInfo } from "../../api"; // api to delete set info
 
 export default class SetInfoHome extends React.Component {
 
@@ -31,6 +32,17 @@ export default class SetInfoHome extends React.Component {
         }
     }
 
+    deleteSetInfo = async (setID) => { // send request to delete set info
+        const result = await deleteSetInfo(setID)
+
+        if(result.data.status === 0) {
+            message.success("Successfully delete")
+            this.getSetList(1) // after delete, reload the list
+        }else {
+            message.error("Delete failed")
+        }
+    }
+
     // init table
     initColumns = () => {
         this.columns = [
@@ -50,13 +62,14 @@ export default class SetInfoHome extends React.Component {
                 render: (price) => '€' + price
             },
             {
-                width: 180,
+                width: 250,
                 title: 'operation',
                 render: (setList) => {
                     return (
                         <span>
                             <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer' }} onClick={() => this.props.history.push('/setInfo/detail', setList)}>Detail</button>
                             <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer', marginLeft: 30 }} onClick={() => this.props.history.push('/setInfo/addOrUpdate', setList)}>Modify</button>
+                            <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer', marginLeft: 30 }} onClick={() => this.deleteSetInfo(setList._id)}>Delete</button>
                         </span>
                     )
                 }
