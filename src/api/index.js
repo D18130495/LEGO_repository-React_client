@@ -36,6 +36,11 @@ export function updateCategory(name, parentId) {
 export function getSetReleaseYear(categoryId) {
     return ajax(PORT + '/manage/category/year', {categoryId}, 'GET')
 }
+
+// delete year category
+export function deleteCategoryYear(yearID) {
+    return ajax(PORT + '/manage/category/year/delete', {yearID}, 'GET')
+}
 //-------------------------------------------------------------------------------------
 
 

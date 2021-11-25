@@ -42,7 +42,7 @@ export default class SetInfoHome extends React.Component {
         const result = await deleteSetInfo(setID) // call the api to delete row
 
         if(result.data.status === 0) {
-            message.success("Successfully delete")
+            message.success("Successfully delete set info")
             this.getSetList(1) // after delete, reload the list
         }else {
             message.error("Delete failed")

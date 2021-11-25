@@ -4,7 +4,7 @@ import React from "react";
 import { Card, Table, Button, message, Modal } from 'antd' // antd card, table and button component
 import { PlusSquareOutlined, RightSquareOutlined } from '@ant-design/icons'; // antd icon
 
-import {getCategoryList, updateCategory, addCategory} from '../../api' // api to get category list
+import {getCategoryList, updateCategory, addCategory, deleteCategoryYear} from '../../api' // api to get category list
 import AddForm from "../../components/addForm/addForm"; // add form component
 import UpdateForm from '../../components/updateForm/updateForm' // update form component
 
@@ -106,6 +106,18 @@ export default class Theme extends React.Component {
         this.getCategory() // reload category list
     }
 
+    deleteYear = async(categoryList) => {
+        // console.log(categoryList)
+        const result = await deleteCategoryYear(categoryList._id)
+
+        if(result.data.status === 0) {
+            message.success("Successfully delete year")
+            this.getCategory() // after delete, reload the list
+        }else {
+            message.error("Delete failed")
+        }
+    }
+
     // set state showTable to 1, make add form visible
     showAdd = () => {
         this.setState({
@@ -149,7 +161,9 @@ export default class Theme extends React.Component {
                 <span> 
                     <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer' }} onClick={() => (this.showUpdate(categoryList))}>{this.state.parentId === '0' ? 'Modify theme' : 'Modify year'}</button>
                     {this.state.parentId === '0' ? 
-                    <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer', marginLeft: 30 }} onClick={() => (this.getYearList(categoryList))}>View year</button> : null}
+                    <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer', marginLeft: 30 }} onClick={() => (this.getYearList(categoryList))}>View year</button> : 
+                    <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer', marginLeft: 30 }} onClick={() => (this.deleteYear(categoryList))}>Delete year</button>
+                    }
                 </span>
                 )
             },
