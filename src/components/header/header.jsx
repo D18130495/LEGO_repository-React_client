@@ -61,7 +61,7 @@ class Header extends Component {
                 </div>
 
                 <div className="header-bottom">
-                    <div className="header-bottom-title">title</div>
+                    <div className="header-bottom-title">Explore</div>
                     <div className="header-bottom-time">{currentTime}</div>
                 </div>
             </div>

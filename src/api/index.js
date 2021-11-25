@@ -74,6 +74,11 @@ export function deleteSetInfo(setID) {
 //-------------------------------------------------------------------------------------
 
 
+//--------------------------operation with user list------------------------------------
+// get user list
+export function getUserList() {
+    return ajax(PORT + '/manage/user/list', {}, 'GET')
+}
 
 // remove the picture
 export function removePicture(name) {
