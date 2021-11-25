@@ -1,6 +1,6 @@
 // setInfo main page
 import React from "react";
-import { Card, Button, Table, message } from 'antd'; // antd component
+import { Card, Button, Table, message, Modal } from 'antd'; // antd component
 import { PlusSquareOutlined } from '@ant-design/icons'; // antd icon
 import { getSetList } from '../../api' // api to send request
 import { deleteSetInfo } from "../../api"; // api to delete set info
@@ -9,7 +9,9 @@ export default class SetInfoHome extends React.Component {
 
     state = {
         total: 0, // total data
-        setList: [], // lego set list
+        setList: [], // lego set list        
+        showTable: 0, // invisible delete inform table 0, visible delete inform table 1
+        setListID: 0, // the row ID, use to position the delete row
     }
 
     componentWillMount () {
@@ -33,7 +35,11 @@ export default class SetInfoHome extends React.Component {
     }
 
     deleteSetInfo = async (setID) => { // send request to delete set info
-        const result = await deleteSetInfo(setID)
+        this.setState({ // after delete, invisiable delete inform table
+            showTable: 0
+        })
+
+        const result = await deleteSetInfo(setID) // call the api to delete row
 
         if(result.data.status === 0) {
             message.success("Successfully delete")
@@ -41,6 +47,21 @@ export default class SetInfoHome extends React.Component {
         }else {
             message.error("Delete failed")
         }
+    }
+
+    showDelete = (setListID) => { // show delete inform table
+        this.setListID = setListID // set the delete row, use to position the delete row
+        this.setState({
+            showTable: 1 // 1 is to show the delete inform table
+        })
+    }
+
+    // set state showTable to 0, make delete inform table invisible
+    removeDelete = () => {
+        this.setListID = 0 // close delete inform table, set the delete row to 0
+        this.setState({
+            showTable: 0 // make delete inform table invisible
+        })
     }
 
     // init table
@@ -69,16 +90,16 @@ export default class SetInfoHome extends React.Component {
                         <span>
                             <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer' }} onClick={() => this.props.history.push('/setInfo/detail', setList)}>Detail</button>
                             <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer', marginLeft: 30 }} onClick={() => this.props.history.push('/setInfo/addOrUpdate', setList)}>Modify</button>
-                            <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer', marginLeft: 30 }} onClick={() => this.deleteSetInfo(setList._id)}>Delete</button>
+                            <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer', marginLeft: 30 }} onClick={() => (this.showDelete(setList._id))}>Delete</button>
                         </span>
                     )
                 }
             },
           ];
     }
-
+// () => this.deleteSetInfo(setList._id)
     render() {
-        const {setList, total} = this.state
+        const { setList, total, showTable } = this.state
 
         const title = (
            <span>Manage the LEGO sets.</span>
@@ -94,6 +115,11 @@ export default class SetInfoHome extends React.Component {
         return (
             <Card title={title} extra={extra}>
                 <Table pagination={{total, defaultPageSize: 5, showQuickJumper: true, onChange: this.getSetList}} bordered rowKey='_id' dataSource={setList} columns={this.columns} />
+                
+                {/* Delete inform table */}
+                <Modal title="Delete inform" visible={showTable === 1} onOk={() => this.deleteSetInfo(this.setListID)} onCancel={this.removeDelete}>
+                    Are you sure to delete the information of this set?
+                </Modal>
             </Card>
         )
     }

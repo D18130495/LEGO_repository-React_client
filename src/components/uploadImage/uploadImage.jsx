@@ -113,7 +113,7 @@ export default class UploadImage extends React.Component {
           onPreview={this.handlePreview}
           onChange={this.handleChange}
         >
-          {fileList.length >= 8 ? null : uploadButton}
+          {fileList.length >= 3 ? null : uploadButton}
         </Upload>
         <Modal
           visible={previewVisible}

@@ -154,8 +154,8 @@ export default class AddOrUpdate extends React.Component {
                             { required: true, whitespace: true, message: 'Please input set name' }
                         ]}
                     >
-                        <Input placeholder='Please input set name'
-                        placeholder={this.props.location.state? this.props.location.state.name : null}
+                        <Input
+                        placeholder={this.props.location.state? this.props.location.state.name : 'Please input set name'}
                         value={name} onChange={event => this.setState({name:event.target.value})}/>
                     </Form.Item>
 
@@ -165,8 +165,8 @@ export default class AddOrUpdate extends React.Component {
                             { required: true, whitespace: true, message: 'Please input set description' }
                         ]}
                     >
-                        <Input placeholder='Please input set description'
-                        placeholder={this.props.location.state? this.props.location.state.desc : null}
+                        <Input
+                        placeholder={this.props.location.state? this.props.location.state.desc : 'Please input set description'}
                         value={desc} onChange={event => this.setState({desc:event.target.value})}/>
                     </Form.Item>
 
@@ -177,8 +177,8 @@ export default class AddOrUpdate extends React.Component {
                             { validator: this.validatePrice }
                         ]}
                     >
-                        <Input type='number' placeholder='Please input set price' addonAfter='€'
-                        placeholder={this.props.location.state? this.props.location.state.price : null}
+                        <Input type='number' addonAfter='€'
+                        placeholder={this.props.location.state? this.props.location.state.price : 'Please input set price'}
                         value={price} onChange={event => this.setState({price:event.target.value})}/>
                     </Form.Item>
 
