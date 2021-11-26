@@ -2,14 +2,20 @@
 import React from "react";
 import { Card, Button, Table, message, Modal } from 'antd';
 import { PlusSquareOutlined, SafetyCertificateOutlined } from '@ant-design/icons'; // antd icon
-import { getUserList } from "../../api"; // api to get user list
+import { getUserList, updateUser } from "../../api"; // api to get user list, update user info
 import AuthTree from '../../components/authTree/authTree' // used to set user permissions and specify the functions that users can use
+import { formateTime } from '../../utils/currentTime' // use to formate the date
 
 export default class User extends React.Component {
     state = {
         userList: [], // users list
         rowSelected: {}, // the row selected
         showAuthTable: 0, // show authority table, 0 is invisible, 1 is visible
+    }
+
+    constructor (props) {
+        super(props)
+        this.menus = React.createRef() // use to get the result from authTree
     }
 
     // Column format
@@ -21,7 +27,8 @@ export default class User extends React.Component {
             },
             {
                 title: 'Create time',
-                dataIndex: 'create_time'
+                dataIndex: 'create_time',
+                render: formateTime // formate the date use utils
             },
             {
                 title: 'Phone number',
@@ -36,7 +43,7 @@ export default class User extends React.Component {
 
     // get the user list from back end
     getUserList = async () => {
-        const result = await getUserList() // send the request
+        const result = await getUserList() // send the request, to get user list
         
         if(result.data.status === 0) {
             const userList = result.data.data
@@ -48,8 +55,21 @@ export default class User extends React.Component {
         }
     }
     // update user Authority
-    updateAuth = () => {
+    updateAuth = async () => {
+        this.closeAuthTable() // close the authTree table
+        // get the updated authority treeList from authTree
+        const menus = this.menus.current.getMenus()
+        // set the selected user menus to the updated authority treeList
+        this.state.rowSelected.menus = menus
+
+        const result = await updateUser(this.state.rowSelected) // send the request, to update the user info
         
+        if(result.data.status === 0) {
+            message.success("Successfully update user info")
+            this.getUserList() // reload the user list
+        }else {
+            message.error("Update user failed")
+        }
     }
 
     // open authority table
@@ -76,10 +96,11 @@ export default class User extends React.Component {
         this.getUserList()
     }
 
+    // when click the row, it will set the rowSelected to targeting the row we selected, this will use for rowSelection in table tag
     selectedRow = (rowSelected) => {
         return {
             onClick: event => {
-                console.log(rowSelected)
+                // console.log(rowSelected)
                 this.setState({
                     rowSelected
                 })
@@ -113,7 +134,7 @@ export default class User extends React.Component {
                 <Table rowKey='_id' dataSource={userList} columns={this.userCol} pagination={{defaultPageSize: 5}} rowSelection={{type:'radio', selectedRowKeys: [rowSelected._id]}} onRow={this.selectedRow}></Table>
                     
                 <Modal title="Authority" visible={showAuthTable === 1} onOk={this.updateAuth} onCancel={this.closeAuthTable}>
-                    <AuthTree user={rowSelected}/>
+                    <AuthTree user={rowSelected} ref={this.menus}/>
                 </Modal>
             </Card>
         )

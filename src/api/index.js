@@ -80,6 +80,12 @@ export function getUserList() {
     return ajax(PORT + '/manage/user/list', {}, 'GET')
 }
 
+// update user info
+export function updateUser(user) {
+    return ajax(PORT + '/manage/user/update', user, 'POST')
+}
+//--------------------------------------------------------------------------------------
+
 // remove the picture
 export function removePicture(name) {
     return ajax(PORT + '/manage/img/delete', {name}, 'POST')

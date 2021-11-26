@@ -5,53 +5,87 @@ import { Input, Tree } from "antd";
 
 export default class AuthTree extends React.Component {
     static propTypes = {
-        user: PropTypes.object
+        user : PropTypes.object // get the selected user row from user list
+    }
+
+    state = {
+        treeList: []
+    }
+
+    constructor (props) {
+        super(props)
+        this.state = {
+            treeList: this.props.user.menus // init the default value
+        } 
+    }
+
+    // use to get the data of treeList 
+    getMenus = () => this.state.treeList
+
+    // click on the option and reset the value of tree
+    onCheck = treeList => {
+        this.setState({
+            treeList
+        })
+    }
+
+    // when the authTree receive the props update the default option of the list
+    componentWillReceiveProps (nextProps) {
+        this.setState({
+            treeList: nextProps.user.menus
+        })
     }
 
     render() {
         const treeData = [
             {
               title: 'All permissions',
-              key: '0-0',
+              key: '/all',
               children: [
                 {
                     title: 'Home',
-                    key: '0-0-0',
+                    key: '/home'
                 },
                 {
                     title: 'Manage LEGO sets',
-                    key: '0-0-1',
+                    key: '/manageSet',
                     children: [
                         {
                             title: 'Add theme',
-                            key: '0-0-0-0',
+                            key: '/manageSet/theme',
                         },
                         {
                             title: 'Add set information',
-                            key: '0-0-0-1',
+                            key: '/manageSet/setinfo',
                         },
                     ],
                 },
                 {
                     title: 'Manage user',
-                    key: '0-0-2',
+                    key: '/manageUser',
                     children: [
                         {
                             title: 'Add user',
-                            key: '0-0-0-1',
+                            key: '/manageUser/user',
                         },
                     ],
                 },
                 {
                     title: 'GitHub',
-                    key: '0-0-3',
+                    key: '/github',
                 },
               ],
             },
           ];
           
         return (
-            <Tree checkable treeData={treeData} defaultExpandAll={true}/>
+            <Tree 
+                checkable // tree can be click
+                treeData={treeData} // the data of the tree
+                defaultExpandAll={true} // display all the tree leaf
+                checkedKeys={this.state.treeList} // display the init permissions list
+                onCheck={this.onCheck} // click the option and reset the treeList
+            ></Tree>
         )
     }
 }
