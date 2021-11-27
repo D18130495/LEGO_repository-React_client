@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types'; // use to get the data from user
-import { Input, Tree } from "antd";
+import { Tree } from "antd"; // component from ant design
 
 
 export default class AuthTree extends React.Component {

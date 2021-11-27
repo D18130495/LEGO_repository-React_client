@@ -1,8 +1,8 @@
 // page for main => user
 import React from "react";
-import { Card, Button, Table, message, Modal } from 'antd';
+import { Card, Button, Table, message, Modal } from 'antd'; // component from ant design
 import { PlusSquareOutlined, SafetyCertificateOutlined } from '@ant-design/icons'; // antd icon
-import { getUserList, updateUser } from "../../api"; // api to get user list, update user info
+import { getUserList, updateUser, deleteUser } from "../../api"; // api to get user list, update user info, delete user
 import AuthTree from '../../components/authTree/authTree' // used to set user permissions and specify the functions that users can use
 import { formateTime } from '../../utils/currentTime' // use to formate the date
 
@@ -11,6 +11,7 @@ export default class User extends React.Component {
         userList: [], // users list
         rowSelected: {}, // the row selected
         showAuthTable: 0, // show authority table, 0 is invisible, 1 is visible
+        showAddOrUpdateTable: 0, // show add or update table, 0 is invisible, 1 is visible
     }
 
     constructor (props) {
@@ -38,6 +39,22 @@ export default class User extends React.Component {
                 title: 'Email',
                 dataIndex: 'email'
             },
+            {
+                width: 175,
+                title: 'operation',
+                render: (rowSelected) => {
+                    return (
+                        <span>
+                            {/* admin can not be operated */}
+                            {rowSelected.username === 'admin' ? null :
+                            <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer' }}>Modify</button>}
+                            
+                            {rowSelected.username === 'admin' ? null : 
+                            <button style={{color: '#d0021b', background: 'transparent', border: 'none', cursor: 'pointer', marginLeft: 30 }} onClick={() => this.deleteUser(rowSelected)}>Delete</button>}
+                        </span>
+                    )
+            }
+        },
         ]
     }
 
@@ -72,6 +89,23 @@ export default class User extends React.Component {
         }
     }
 
+    // delete user
+    deleteUser = (rowSelected) => {
+        Modal.confirm({
+            content: 'Are you sure to delete this user?',
+            onOk: async () => {
+                const result = await deleteUser(rowSelected._id) // send request, to delete user
+            
+                if(result.data.status === 0) {
+                    message.success("Successfully delete user")
+                    this.getUserList() // reload the user list
+                }else {
+                    message.error("Delete user failed")
+                }
+            },
+        })
+    }
+
     // open authority table
     openAuthTable = () => {
         this.setState({
@@ -83,6 +117,20 @@ export default class User extends React.Component {
     closeAuthTable = () => {
         this.setState({
             showAuthTable: 0
+        })
+    }
+
+    // open add or update table
+    openAddOrUpdateTable = () => {
+        this.setState({
+            showAddOrUpdateTable: 1
+        })
+    }
+
+    // invisible add or update table
+    closeAddOrUpdateTable = () => {
+        this.setState({
+            showAddOrUpdateTable: 0
         })
     }
 
@@ -109,11 +157,12 @@ export default class User extends React.Component {
     }
 
     render() {
-        const { userList, rowSelected, showAuthTable } = this.state
+        const { userList, rowSelected, showAuthTable, showAddOrUpdateTable } = this.state
 
         const title = (
             <span>
-                <Button type='primary' disabled={!rowSelected._id} style={{border: 'none', cursor: 'pointer', marginLeft: 30 }} onClick={() => (this.openAuthTable())}>
+                {/* admin can not be authorized */}
+                <Button type='primary' disabled={!rowSelected._id || rowSelected.username === 'admin'} style={{border: 'none', cursor: 'pointer', marginLeft: 30 }} onClick={() => (this.openAuthTable())}>
                     <SafetyCertificateOutlined />
                     Authority
                 </Button>    
@@ -131,10 +180,14 @@ export default class User extends React.Component {
 
         return (
             <Card title={title} extra={extra}>
-                <Table rowKey='_id' dataSource={userList} columns={this.userCol} pagination={{defaultPageSize: 5}} rowSelection={{type:'radio', selectedRowKeys: [rowSelected._id]}} onRow={this.selectedRow}></Table>
+                <Table bordered rowKey='_id' dataSource={userList} columns={this.userCol} pagination={{defaultPageSize: 5}} rowSelection={{type:'radio', selectedRowKeys: [rowSelected._id]}} onRow={this.selectedRow}></Table>
                     
                 <Modal title="Authority" visible={showAuthTable === 1} onOk={this.updateAuth} onCancel={this.closeAuthTable}>
                     <AuthTree user={rowSelected} ref={this.menus}/>
+                </Modal>
+
+                <Modal title="User" visible={showAddOrUpdateTable === 1} onOk={this.addOrUpdateUser} onCancel={this.closeAddOrUpdateTable}>
+                    <div>123</div>
                 </Modal>
             </Card>
         )

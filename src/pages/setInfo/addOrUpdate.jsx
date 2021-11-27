@@ -20,21 +20,21 @@ export default class AddOrUpdate extends React.Component {
         childrenOptions: [], // release year children list
     }
     
-    // get the picture from child component
     constructor(props) {
         super(props)
-        this.picture = React.createRef()
-        this.setDetailText = React.createRef()
+        this.picture = React.createRef() // get the picture from child component
+        this.setDetailText = React.createRef() // get the detail from child component
     }
-    setPrice
+    
     // get release year list, and call the setOption to set the options date from api(getCategoryList)
     getCategory = async (parentId) => {
-        const result = await getCategoryList(parentId)
+        const result = await getCategoryList(parentId) // send request to get category list, it can be them or year
+
         if(result.data.status === 0) {
             const category = result.data.data 
-            if(parentId === '0') { // if parentId === 0, get the first list
+            if(parentId === '0') { // if parentId === 0, get the theme list
                 this.setOption(category)
-            }else { // if parentId is one of the Id from ParentId, get children list
+            }else { // if parentId is one of the Id from ParentId, get year list
                 this.setChildren(category)
             }   
         }
@@ -48,10 +48,11 @@ export default class AddOrUpdate extends React.Component {
             isLeaf: false,
         }))
         this.setState({
-            options: option
+            options: option // set the first(parent) list to the theme option
         })
     }
 
+    // set options list, year list
     setChildren = (category) => {
         const childrenOption = category.map(childrenOption => ({
             value: childrenOption._id,
@@ -59,7 +60,7 @@ export default class AddOrUpdate extends React.Component {
             isLeaf: true, // it is not the leaf, so no more leaf appear
         }))
         this.setState({
-            childrenOptions: childrenOption // set the second(children) list to the childrenOptions
+            childrenOptions: childrenOption // set the second(children) list to the year option
         })
     }
 
@@ -90,42 +91,45 @@ export default class AddOrUpdate extends React.Component {
     };
 
     onFinish = async () => {
-        const {name, desc, price, setYears} = this.state
-        const imgs = this.picture.current.getImgs()
-        const detail = this.setDetailText.current.getSetDetail()
+        const {name, desc, price, setYears} = this.state // get value from state
+        const imgs = this.picture.current.getImgs() // get the image array
+        const detail = this.setDetailText.current.getSetDetail() // get the detail
         var pCategoryId, categoryId
-        if(setYears.length === 1) {
+        if(setYears.length === 1) { // if length === 1, mean only have theme
             pCategoryId = '0'
             categoryId = setYears[0]
-        }else {
+        }else { // if length !== 1, mean two value in the array, one is theme, one is year
             pCategoryId = setYears[0]
             categoryId = setYears[1]
         }
 
-        const set = {name, desc, price, imgs, detail, categoryId, pCategoryId}
+        const set = {name, desc, price, imgs, detail, categoryId, pCategoryId} // store all data in set
         var result = ''
-        console.log(set)
-        if(this.props.location.state) {
-            set._id = this.props.location.state._id
-            console.log(set)
-            result = await updateSetInfo(set)
+
+        if(this.props.location.state) { // if do have have value, mean add set info
+            set._id = this.props.location.state._id // add the update setId
+            result = await updateSetInfo(set) // send request to update set info
         }else {
-            result = await addSetInfo(set)
+            result = await addSetInfo(set) // send request to add set info
         }
         
-        if(result.data.status === 0) {
-            message.success("ok")
+        // display the result message if add or update and success or not
+        if(result.data.status === 0 && !this.props.location.state) {
+            message.success("Successfully add the set")
             this.props.history.goBack()
+        }else if(result.data.status === 0 && this.props.location.state) {
+            message.success("Successfully update the set")
+            this.props.history.goBack()
+        }else if(!(result.data.status === 0) && !this.props.location.state) {
+            message.error("Add the set failed")
         }else {
-            message.error("no")
-            this.props.history.goBack()
-        }  
+            message.error("Update the set failed")
+        }
     }
 
     // get the release year before load the page
     componentDidMount() {
         this.getCategory('0')
-        console.log(this.props.location.state)
     }
     
     render() {

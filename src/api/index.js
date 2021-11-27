@@ -69,7 +69,7 @@ export function updateSetInfo(set) {
 
 // delete set info
 export function deleteSetInfo(setID) {
-    return ajax(PORT + '/manage/set/delete', {setID}, 'GET')
+    return ajax(PORT + '/manage/set/delete', {setID}, 'POST')
 }
 //-------------------------------------------------------------------------------------
 
@@ -83,6 +83,11 @@ export function getUserList() {
 // update user info
 export function updateUser(user) {
     return ajax(PORT + '/manage/user/update', user, 'POST')
+}
+
+// delete user info
+export function deleteUser(userID) {
+    return ajax(PORT + '/manage/user/delete', {userID}, 'POST')
 }
 //--------------------------------------------------------------------------------------
 
