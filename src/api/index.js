@@ -10,11 +10,6 @@ export function userLogin(username, password) {
     return ajax(PORT + '/login', {username, password}, 'POST')
 }
 
-// add user
-export function addUser(user) {
-    return ajax(PORT + '/manage/user/add', user, 'POST')
-}
-
 //--------------------------operation with category------------------------------------
 // get category list
 export function getCategoryList(parentId) {
@@ -78,6 +73,11 @@ export function deleteSetInfo(setID) {
 // get user list
 export function getUserList() {
     return ajax(PORT + '/manage/user/list', {}, 'GET')
+}
+
+// add user
+export function addUser(user) {
+    return ajax(PORT + '/manage/user/add', user, 'POST')
 }
 
 // update user info
