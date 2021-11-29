@@ -181,12 +181,12 @@ export default class Theme extends React.Component {
             <Card title={title} extra={addButton}>
                 <Table dataSource={parentId === "0" ? categoryList : yearList} columns={columns} rowKey='_id' pagination={{defaultPageSize: 5, showQuickJumper: true}}/>
             
-                <Modal title="Add category" visible={showTable === 1} onOk={this.addCategory} onCancel={this.handleCancel}>
+                <Modal title="Add" visible={showTable === 1} onOk={this.addCategory} onCancel={this.handleCancel}>
                     <AddForm parentId={parentId} getInputAdd={this.addcate}></AddForm>
                 </Modal>
 
                 {/* update category, give the category name to the update form and get input back from update form */}
-                <Modal title="Update category" visible={showTable === 2} onOk={this.updateCategory} onCancel={this.handleCancel}>
+                <Modal title="Update" visible={showTable === 2} onOk={this.updateCategory} onCancel={this.handleCancel}>
                     <UpdateForm category={category.name}  getInput={this.cname}></UpdateForm>
                 </Modal>
             </Card>

@@ -61,7 +61,7 @@ export default class Detail extends React.Component {
                         <span>
                             {
                                 set.imgs.map(img => (
-                                    <img key={img} src={'http://localhost:41571/images/' + img} alt="img"/>
+                                    <img key={img} src={'http://localhost:41571/images/' + img} alt="img" style={{height : '200px', width : "350px"}}/>
                                 ))
                             }
                         </span>
