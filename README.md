@@ -76,5 +76,28 @@ LEGO Repositories
 ```
 
 ## Get started with this project.
+1. LEGO_Repo_documentation.docx is the documentation, readme.docx is the deployment process.
+2. sets.json, users.json, categorys.json are the Json file for the MongoDB database.
+3. The deployment process of the front-end, back-end and database are all in LEGO_Repo_documentation.docx.
 
 ## API for the each request.
+1. http://localhost:41571/login: use for user login (POST)
+2. http://localhost:41571/manage/category/list: use for get category list (GET)
+3. http://localhost:41571/manage/category/add: use for add category list (POST)
+4. http://localhost:41571/manage/category/update: use for update category list, can be theme or year (POST)
+5. http://localhost:41571/manage/category/year: use for get year list (GET)
+6. http://localhost:41571/manage/category/year/delete: use for delete year (GET)
+
+7. http://localhost:41571/manage/set/add: use for add set information (POST)
+8. http://localhost:41571/manage/set/update: use for update set information (POST)
+9. http://localhost:41571/manage/set/delete: use for delete set information (POST)
+10. http://localhost:41571/manage/set/list: use to get set list (GET)
+11. http://localhost:41571/manage/set/search: use to get set list by pagination (GET)
+
+12. http://localhost:41571/manage/user/list: use for get user list (GET)
+13. http://localhost:41571/manage/user/add: use for add user (POST)
+14. http://localhost:41571/manage/user/update: use for update user (POST)
+15. http://localhost:41571/manage/user/delete: use for delete user (POST)
+
+16. http://localhost:41571/manage/img/upload: use for upload images (POST)
+17. http://localhost:41571/manage/img/delete: use for delete images (POST)

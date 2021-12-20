@@ -1,0 +1,30 @@
+[{
+  "_id": {
+    "$oid": "61a2742a84ed266dc6161efa"
+  },
+  "username": "system",
+  "password": "e10adc3949ba59abbe56e057f20f883e",
+  "phone": "",
+  "email": "",
+  "menus": [
+    "/home",
+    "/manageSet/theme",
+    "/github"
+  ],
+  "create_time": 1638036522390,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a42482d2370093184f1fc6"
+  },
+  "username": "HuaruoYumu",
+  "password": "e10adc3949ba59abbe56e057f20f883e",
+  "phone": "0876057975",
+  "email": "d18130495@mytudublin.ie",
+  "menus": [
+    "/home",
+    "/github"
+  ],
+  "create_time": 1638147202074,
+  "__v": 0
+}]

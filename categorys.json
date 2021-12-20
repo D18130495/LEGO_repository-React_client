@@ -1,0 +1,253 @@
+[{
+  "_id": {
+    "$oid": "617da3d0aa07194e6c019a5c"
+  },
+  "parentId": "617d9ad0aa07194e6c019a5b",
+  "name": "2020",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "617edc47d81bf82a08ccf66b"
+  },
+  "parentId": "617edb71d81bf82a08ccf668",
+  "name": "2021",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619bf1a8fc0cd42173d429d8"
+  },
+  "name": "Harry Potter™",
+  "parentId": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619bfca22e9f289c205a361a"
+  },
+  "name": "Architecture",
+  "parentId": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619bff7cfa649f294df6d06a"
+  },
+  "name": "NINJAGO®",
+  "parentId": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619bff98fa649f294df6d070"
+  },
+  "name": "2021",
+  "parentId": "619bff7cfa649f294df6d06a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619d7e687a5d4fcda3ec903a"
+  },
+  "name": "2020",
+  "parentId": "619bff7cfa649f294df6d06a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619fa6c2a3b770b8108743ee"
+  },
+  "name": "2021",
+  "parentId": "619bfca22e9f289c205a361a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619fa6c5a3b770b8108743f1"
+  },
+  "name": "2020",
+  "parentId": "619bfca22e9f289c205a361a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a0025842f1f1df5be989c2"
+  },
+  "name": "2020",
+  "parentId": "619bf1a8fc0cd42173d429d8",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a0025d42f1f1df5be989c5"
+  },
+  "name": "2019",
+  "parentId": "619bf1a8fc0cd42173d429d8",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cb743c9a97e038d93757"
+  },
+  "name": "Creator 3-in-1",
+  "parentId": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cb7c3c9a97e038d9375a"
+  },
+  "name": "Disney™",
+  "parentId": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cb893c9a97e038d9375d"
+  },
+  "name": "Spider-Man",
+  "parentId": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cb953c9a97e038d93760"
+  },
+  "name": "Speed Champions",
+  "parentId": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cba73c9a97e038d93763"
+  },
+  "name": "Ideas",
+  "parentId": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cbbf3c9a97e038d93766"
+  },
+  "name": "BrickHeadz",
+  "parentId": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cbc83c9a97e038d93769"
+  },
+  "name": "Classic",
+  "parentId": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cbda3c9a97e038d9376c"
+  },
+  "name": "Creator Expert",
+  "parentId": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cbeb3c9a97e038d93773"
+  },
+  "name": "2021",
+  "parentId": "61a4cb743c9a97e038d93757",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cbef3c9a97e038d93776"
+  },
+  "name": "2020",
+  "parentId": "61a4cb743c9a97e038d93757",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cbf33c9a97e038d93779"
+  },
+  "name": "2019",
+  "parentId": "61a4cb743c9a97e038d93757",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc023c9a97e038d93780"
+  },
+  "name": "2021",
+  "parentId": "61a4cb7c3c9a97e038d9375a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc053c9a97e038d93783"
+  },
+  "name": "2020",
+  "parentId": "61a4cb7c3c9a97e038d9375a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc133c9a97e038d93787"
+  },
+  "name": "2021",
+  "parentId": "61a4cb893c9a97e038d9375d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc163c9a97e038d9378a"
+  },
+  "name": "2020",
+  "parentId": "61a4cb893c9a97e038d9375d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc1f3c9a97e038d9378e"
+  },
+  "name": "2021",
+  "parentId": "61a4cb953c9a97e038d93760",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc223c9a97e038d93791"
+  },
+  "name": "2020",
+  "parentId": "61a4cb953c9a97e038d93760",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc293c9a97e038d93795"
+  },
+  "name": "2021",
+  "parentId": "61a4cba73c9a97e038d93763",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc2c3c9a97e038d93798"
+  },
+  "name": "2020",
+  "parentId": "61a4cba73c9a97e038d93763",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc333c9a97e038d9379c"
+  },
+  "name": "2021",
+  "parentId": "61a4cbbf3c9a97e038d93766",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc363c9a97e038d9379f"
+  },
+  "name": "2020",
+  "parentId": "61a4cbbf3c9a97e038d93766",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc4b3c9a97e038d937a5"
+  },
+  "name": "2021",
+  "parentId": "61a4cbc83c9a97e038d93769",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc4e3c9a97e038d937a8"
+  },
+  "name": "2020",
+  "parentId": "61a4cbc83c9a97e038d93769",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc563c9a97e038d937ac"
+  },
+  "name": "2021",
+  "parentId": "61a4cbda3c9a97e038d9376c",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a4cc593c9a97e038d937af"
+  },
+  "name": "2020",
+  "parentId": "61a4cbda3c9a97e038d9376c",
+  "__v": 0
+}]
