@@ -2,10 +2,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import App from "./App";
+
 import storeUser from '../src/utils/storeUserName'
 import memoryUser from "./utils/memoryUser";
-
-import App from "./App";
 
 const user = storeUser.loadUser()
 memoryUser.user = user
