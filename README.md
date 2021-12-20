@@ -3,17 +3,34 @@
 [LEGO official website](https://www.lego.com/en-ie).
 
 ## Project Introduction
+- [Project Introduction](#Project Introduction)
 - [Technology Selection](#technology-selection)
 - [Project structure](#project-structure)
 - [Get started with this project](#get-started-with-this-project)
 - [API for the each request](#api-for-the-each-request)
 
+## Project Introduction
+This is a website for querying Lego sets information.<br>
+In this project, there are three main modules and functions:
+- Search Lego information: Use to search Lego sets information. 
+- Manage Lego sets information: Use to manage Lego sets theme and release year, manage the details of Lego sets. 
+- Manage user: Use to manage the user information.
+
 ## Technology Selection
+
+### Front-end
 |     Technology     |        Description       |                Official website                |
 | :----------------: | :----------------------: | :--------------------------------------------: |
 |       React        |    Front-end framework   |               https://reactjs.org/             |
 |     Ant Design     |  React UI Component Repo |           https://ant.design/index-cn          |
 |     Ajax(Axios)    | Send asynchronous request|                                                |
+
+### Back-end
+|     Technology     |        Description       |                Official website                |
+| :----------------: | :----------------------: | :--------------------------------------------: |
+|      Node.js       |  JavaScript Environment  |               https://nodejs.org/              |
+|      Express       |   Node.js Web Framework  |                                                |
+|      MongoDB       |  Non-relational database |             https://www.mongodb.com/           |
 
 ### This project used our repositories from GitHub
 1. - The purpose of using is to reset css style, in order to make some elements look better.
