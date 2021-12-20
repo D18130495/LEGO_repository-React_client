@@ -3,13 +3,13 @@
 [LEGO official website](https://www.lego.com/en-ie).
 
 ## Project Introduction
-- [Project Introduction](#Project Introduction)
+- [Project Description](#Project-description)
 - [Technology Selection](#technology-selection)
 - [Project structure](#project-structure)
 - [Get started with this project](#get-started-with-this-project)
 - [API for the each request](#api-for-the-each-request)
 
-## Project Introduction
+## Project Description
 This is a website for querying Lego sets information.<br>
 In this project, there are three main modules and functions:
 - Search Lego information: Use to search Lego sets information. 
@@ -93,9 +93,13 @@ LEGO Repositories
 ```
 
 ## Get started with this project.
-1. LEGO_Repo_documentation.docx is the documentation, readme.docx is the deployment process.
-2. sets.json, users.json, categorys.json are the Json file for the MongoDB database.
-3. The deployment process of the front-end, back-end and database are all in LEGO_Repo_documentation.docx.
+1. The deployment process of the front-end, back-end and database are all in Deployment.md
+2. LEGO_Repo_documentation.md is the documentation, Deployment.md is the deployment process.<br>
+    [LEGO_Repo Documentation](docs/LEGO_Repo_documentation.md)<br>
+    [Deployment Process](docs/Deployment.md)
+3. sets.json, users.json, categorys.json are the Json file for the MongoDB database.
+    [MongoDB Json files](docs/Json)
+
 
 ## API for the each request.
 1. http://localhost:41571/login: use for user login (POST)
