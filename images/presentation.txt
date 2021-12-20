@@ -1,0 +1,26 @@
+Welcome to the Lego repositories, This is a Backstage management and search system for Lego sets.
+The first we will see is a login interface.
+
+And at this stage. I will show this system as an admin user
+In the follow-up introduction to the part of the system authorization
+I will demonstrate the system as a normal user
+
+This is the Login box, you have put in you vaild username and password.
+As I said, I will show this system in admin user perspective, so I will use admin user's account to login
+and the admin user password is provided as 123456.
+
+All the input box have Input verification, First I will show, if the user password is incorrent, use will get the inform form the system
+and check you username and password,
+now I will use the correct password to login the system.
+
+This is the overview of the 
+
+In this website it's provided some operations for Lego sets and user, in the left navtive menus, there are three main part function,
+the search function, the lego set manage function and the user manage function.
+
+First I will show the search fucntion, in this page you can search the lego sets by its item number and visit the detial 
+of them,
+ 
+you can search the lego set by its item number, 
+
+For example, there is management of the theme year

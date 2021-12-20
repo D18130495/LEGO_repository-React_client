@@ -97,7 +97,7 @@ LEGO Repositories
 2. LEGO_Repo_documentation.md is the documentation, Deployment.md is the deployment process.<br>
     [LEGO_Repo Documentation](docs/LEGO_Repo_documentation.md)<br>
     [Deployment Process](docs/Deployment.md)
-3. sets.json, users.json, categorys.json are the Json file for the MongoDB database.
+3. sets.json, users.json, categorys.json are the Json file for the MongoDB database.<br>
     [MongoDB Json files](docs/Json)
 
 
