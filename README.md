@@ -9,7 +9,7 @@
 - [Get started with this project](#get-started-with-this-project)
 - [Model definition for database](#model-definition-for-database)
 - [API for the each request](#api-for-the-each-request)
-- [Project](#project)
+- [Project Introduction](#project-introduction)
 
 ## Project Description
 This is a website for querying Lego sets information.<br>
@@ -154,7 +154,7 @@ menus: Array // user can visit which function
 16. http://localhost:41571/manage/img/upload: use for upload images (POST)
 17. http://localhost:41571/manage/img/delete: use for delete images (POST)
 
-## Project
+## Project Introduction
 ### Login page
 The login page provides user verification function, input verification.<br>
 ![login.jpg](docs/images/login.jpg) <center>Show login page</center><br>
@@ -192,3 +192,6 @@ Authorization in the manage user function is use to make log in user can visit s
 The above user has all auth, so he can visit all the function, the follow picture will show the user who do not have all auth, and can only visit partial function.<br>
 ![manage_user_auth.jpg](docs/images/manage_user_auth.jpg) <center>Show auth user</center><br>
 ![manage_user_auth_show.jpg](docs/images/manage_user_auth_show.jpg) <center>Show user without the auth, he can only visit partial function</center><br>
+
+## Youtube video
+[![YouTube](http://img.youtube.com/vi/5aR31m6A3dE/0.jpg)](https://youtu.be/5aR31m6A3dE)
