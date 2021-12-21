@@ -7,7 +7,9 @@
 - [Technology Selection](#technology-selection)
 - [Project structure](#project-structure)
 - [Get started with this project](#get-started-with-this-project)
+- [Model definition for database](#model-definition-for-database)
 - [API for the each request](#api-for-the-each-request)
+- [Project](#project)
 
 ## Project Description
 This is a website for querying Lego sets information.<br>
@@ -93,13 +95,42 @@ LEGO Repositories
 ```
 
 ## Get started with this project.
-1. The deployment process of the front-end, back-end and database are all in Deployment.md
-2. LEGO_Repo_documentation.md is the documentation, Deployment.md is the deployment process.<br>
-    [LEGO_Repo Documentation](docs/LEGO_Repo_documentation.md)<br>
+1. The deployment process of the front-end, back-end and database are all in Deployment.md<br>
+    [Back-end](https://github.com/D18130495/LEGO_repository-React_server)
+2. Deployment.md is the deployment process.<br>
     [Deployment Process](docs/Deployment.md)
 3. sets.json, users.json, categorys.json are the Json file for the MongoDB database.<br>
     [MongoDB Json files](docs/Json)
 
+## Model definition for database.
+
+### Category
+```
+// This is use to store the theme and year, if parentId equal to 0, mean this is theme,
+// if parentId not equal to 0, mean this is year.
+name: {type: String, required: true}// the name of the category
+parentId: {type: String, required: true, default: '0'} // the parent ID of the category
+```
+### Set
+```
+categoryId: {type: String, required: true} // category ID, year of the set, such as(2021, 2020, 2019)
+pCategoryId: {type: String, required: true}// parent category ID, such as(Architecture, Batman™, Harry Potter™)
+name: {type: String, required: true} // name of set
+price: {type: Number, required: true} // price of set
+desc: {type: String} // short desc of set
+imgs: {type: Array, default: []} // address of images
+detail: {type: String} // detail of the set
+```
+
+### User
+```
+username: {type: String, required: true}, // user name 
+password: {type: String, required: true}, // user password
+phone: String, // user phone number
+email: String, // user email
+create_time: {type: Number, default: Date.now}, // create time
+menus: Array // user can visit which function
+```
 
 ## API for the each request.
 1. http://localhost:41571/login: use for user login (POST)
@@ -122,3 +153,17 @@ LEGO Repositories
 
 16. http://localhost:41571/manage/img/upload: use for upload images (POST)
 17. http://localhost:41571/manage/img/delete: use for delete images (POST)
+
+## Project
+### Login page
+The login page provides user verification function, input verification.<br>
+![login.jpg](docs/images/login.jpg)
+
+### Overall layout
+This is the overall layout of this project.<br>
+On the left is the navigation bar, click to jump to the corresponding function.<br>
+Above is the header part to display the currently logged in user and the current time, the user can log out through the button in the upper right corner.<br>
+The middle part is the main display area for different functions.<br>
+![overall.jpg](docs/images/overall.jpg)
+
+### Detailed description of different module functions
