@@ -157,13 +157,38 @@ menus: Array // user can visit which function
 ## Project
 ### Login page
 The login page provides user verification function, input verification.<br>
-![login.jpg](docs/images/login.jpg)
+![login.jpg](docs/images/login.jpg) <center>Show login page</center><br>
 
 ### Overall layout
 This is the overall layout of this project.<br>
 On the left is the navigation bar, click to jump to the corresponding function.<br>
 Above is the header part to display the currently logged in user and the current time, the user can log out through the button in the upper right corner.<br>
 The middle part is the main display area for different functions.<br>
-![overall.jpg](docs/images/overall.jpg)
+![overall.jpg](docs/images/overall.jpg) <center>Show overall looking of the website</center><br>
 
 ### Detailed description of different module functions
+1. Home:<br>
+Home part provide user search and display set detail function. The user can query the Lego set by entering the number corresponding to the set in the search box, you can enter all or half of the number. This search function provides a fuzzy query function to help users find Lego sets better.<br>
+![home_search.jpg](docs/images/home_search.jpg) <center>Show fuzzy query</center><br>
+When you click the detail button on the back side, the detailed information of this set will be displayed.<br>
+![home_detail.jpg](docs/images/home_detail.jpg) <center>Show overall looking of the website</center><br>
+
+2. Manage LEGO sets:<br>
+Two functions are mainly involved in this module.<br>
+The first function is to add the theme and year of the set. This is used to add detailed information about the set later.<br>
+The second function is to add specific information about the set.<br>
+![add_theme_overall.jpg](docs/images/add_theme_overall.jpg) <center>Show overall page of add theme</center><br>
+![add_theme_add.jpg](docs/images/add_theme_add.jpg) <center>Show add theme table</center><br>
+![add_theme_update.jpg](docs/images/add_theme_update.jpg) <center>Show update theme table</center><br>
+![add_theme_year_overall.jpg](docs/images/add_theme_year_overall.jpg) <center>Show add year overall</center>
+The add and update function is same as above.<br>
+
+3. Manage user:<br>
+This part mainly implements the functions of adding users, modifying users, deleting users and authorization.<br>
+![manage_user_overall.jpg](docs/images/manage_user_overall.jpg) <center>Show overall manage user page</center><br>
+![manage_user_add.jpg](docs/images/manage_user_update.jpg) <center>Show add user table</center><br>
+![manage_user_update.jpg](docs/images/manage_user_update.jpg) <center>Show update user table</center><br>
+Authorization in the manage user function is use to make log in user can visit some function or not.<br>
+The above user has all auth, so he can visit all the function, the follow picture will show the user who do not have all auth, and can only visit partial function.<br>
+![manage_user_auth.jpg](docs/images/manage_user_auth.jpg) <center>Show auth user</center><br>
+![manage_user_auth_show.jpg](docs/images/manage_user_auth_show.jpg) <center>Show user without the auth, he can only visit partial function</center><br>
